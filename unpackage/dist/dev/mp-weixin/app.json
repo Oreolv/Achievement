@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/love/love"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#FA3534",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#FA3534",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/tabbar/achievement.png",
+        "selectedIconPath": "static/tabbar/achievement-active.png",
+        "text": "成就"
+      },
+      {
+        "pagePath": "pages/love/love",
+        "iconPath": "static/tabbar/love.png",
+        "selectedIconPath": "static/tabbar/love-active.png",
+        "text": "爱情"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

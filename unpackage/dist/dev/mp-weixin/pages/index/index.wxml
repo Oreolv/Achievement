@@ -1,0 +1,1 @@
+<view><tab vue-id="8dd740cc-1" list="{{tabList}}" data-event-opts="{{[['^tab',[['tab']]]]}}" bind:tab="__e" bind:__l="__l"></tab></view>

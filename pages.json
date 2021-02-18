@@ -1,0 +1,49 @@
+{
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+		}
+
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/love/love",
+			"style": {
+				"navigationBarTitleText": "爱情",
+				"enablePullDownRefresh": false
+			}
+
+		}
+
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#FA3534",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#666",
+		"selectedColor": "#FA3534",
+		"backgroundColor": "#fff",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/tabbar/achievement.png",
+			"selectedIconPath": "static/tabbar/achievement-active.png",
+			"text": "成就"
+		}, {
+			"pagePath": "pages/love/love",
+			"iconPath": "static/tabbar/love.png",
+			"selectedIconPath": "static/tabbar/love-active.png",
+			"text": "爱情"
+		}]
+
+	}
+}
