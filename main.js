@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import App from './App'
-import api from 'common/api'
+import VueResource  from 'vue-resource'
 import uView from "uview-ui";
 Vue.use(uView);
-Vue.prototype.$api = api
+Vue.use(VueResource) 
 Vue.config.productionTip = false
 
 App.mpType = 'app'
