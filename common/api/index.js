@@ -11,7 +11,7 @@ const requireApi = require.context(
 let module = {}
 requireApi.keys().forEach((key,index)=>{
 	if(key === './index.js') return
-	console.log(key);
+	// console.log(key);
 	Object.assign(module,requireApi(key))
 })
 

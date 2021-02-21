@@ -7,6 +7,7 @@
 	]"
 	 class="u-tag" :style="[customStyle]" @tap="clickTag">
 		{{text}}
+		<!-- 改为可渲染 -->
 		<view class="u-icon-wrap" @tap.stop>
 			<u-icon @click="close" size="22" v-if="closeable" :color="closeIconColor" 
 			name="close" class="u-close-icon" :style="[iconStyle]"></u-icon>

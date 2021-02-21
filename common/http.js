@@ -1,4 +1,4 @@
-export default function $http(options){
+export default function $http(options) {
 	const {
 		url,
 		data
@@ -7,13 +7,17 @@ export default function $http(options){
 		uniCloud.callFunction({
 			name: url,
 			data
-		}).then(res => {
-			if (res.result.code == 200) {
+		}).then((res) => {
+
+			if (res.result.code === 200) {
+				// .then
 				reslove(res.result)
 			} else {
-				reslove(res.result)
+				// catch
+				reject(res.result)
 			}
-		}).catch(err => {
+
+		}).catch((err) => {
 			reject(err)
 		})
 	})
