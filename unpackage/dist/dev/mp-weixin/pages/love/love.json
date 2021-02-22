@@ -1,5 +1,8 @@
 {
   "navigationBarTitleText": "爱情",
   "enablePullDownRefresh": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "tab": "/components/tab/tab",
+    "love": "/components/love/love"
+  }
 }

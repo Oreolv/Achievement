@@ -94,7 +94,9 @@
 					}
 					let oldList = this.listCatchData[current] || []
 					oldList.push(...data)
-					
+					oldList.sort(function(a,b){
+						return b.date < a.date ? 1 : -1
+					})
 					// 懒加载
 					this.$set(this.listCatchData, current, oldList)
 				})

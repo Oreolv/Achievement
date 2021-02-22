@@ -83,7 +83,7 @@
 						color: #000;
 						font-weight: bold;
 						.border{
-							border: 1px #000 solid;
+							border-bottom: 2px #000 solid;
 							margin: 0 4px;
 							margin-top: 5px;
 						}

@@ -1,7 +1,7 @@
 <template>
 	<list-scroll class="list-scroll" @loadmore="loadmore">
-		<love-card mode="base" :item="item" v-for="item in list" :key="item._id"></love-card>
-		<uni-load-more v-if="list.length === 0 || list.length > 19" iconType="snow" :status="load.loading"></uni-load-more>
+		<love-card mode="base" :item="item" v-for="(item,index) in list" :key="item._id">{{index+1}}．</love-card>
+		<uni-load-more v-if="list.length === 0 || list.length > 10" iconType="snow" :status="load.loading"></uni-load-more>
 	</list-scroll>
 </template>
 

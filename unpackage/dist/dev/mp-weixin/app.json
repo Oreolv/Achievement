@@ -1,18 +1,19 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/love/love"
+    "pages/love/love",
+    "pages/test/test"
   ],
   "subPackages": [],
   "window": {
-    "navigationBarTextStyle": "white",
+    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#FA3534",
+    "navigationBarBackgroundColor": "#FFF",
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
     "color": "#666",
-    "selectedColor": "#FA3534",
+    "selectedColor": "#666",
     "backgroundColor": "#fff",
     "list": [
       {
@@ -30,5 +31,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap8.json"
 }
