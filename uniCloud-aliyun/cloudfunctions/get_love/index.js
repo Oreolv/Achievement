@@ -1,20 +1,27 @@
 'use strict';
 // 获取数据库的引用
 const db = uniCloud.database()
+const cmd = db.command
 exports.main = async (event, context) => {
 	const {name,page=1,pageSize=10} = event
 	const love = await db.collection('love')
-	.aggregate()
-	.match({
-		classify:name
-	})
-	.project({
-		content: 0
-	})
-	// 要跳过多少数据
+	.where({classify:cmd.eq(name)})
+	.orderBy('rate','asc')
 	.skip(pageSize * (page - 1))
 	.limit(pageSize)
-	.end()
+	// .end()
+	.get()
+	// .aggregate()
+	// .match({
+	// 	classify:name
+	// })
+	// .project({
+	// 	content: 0
+	// })
+	// // 要跳过多少数据
+	// .skip(pageSize * (page - 1))
+	// .limit(pageSize)
+	// .end()
 	//返回数据给客户端
 	var startDay,nowDay,dateSpan,tempDate,iDays;
 	var date = new Date();
@@ -29,15 +36,11 @@ exports.main = async (event, context) => {
 		for(var i=0;i<love.data.length;i++){
 			startDay = Date.parse(love.data[i].date);
 			nowDay = Date.parse(nowTime);
-			// console.log(startDay);
-			// console.log(nowDay);
 			dateSpan = nowDay - startDay;
 			iDays = Math.floor(dateSpan / (24 * 3600 * 1000));
-			console.log(iDays);
 			love.data[i].days = iDays
 		}
 	}
-	console.log(love.data);
 	
 	return {
 		code:200,

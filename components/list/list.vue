@@ -1,18 +1,18 @@
 <template>
-	<swiper class="home-swiper" :current="activeIndex" @change="change">
+	<swiper class="home-swiper" :current="activeIndex" @change="change" disable-touch>
 		<swiper-item v-for="(item ,index) in tab" :key="index" class="swiper-item">
-			<list-item :list="listCatchData[index]" :load="load[index]" @loadmore="loadmore"></list-item>
+			<list-scroll class="list-scroll" @loadmore="loadmore" v-if="listCatchData[index]!=undefined">
+				<list-card :item="item" v-for="(item,index) in listCatchData[index]" :key="item._id">{{index+1}}．</list-card>
+				<uni-load-more  iconType="snow" :status="load[index].loading" v-if="listCatchData[index].length>19||listCatchData[index]==undefined"></uni-load-more>
+			</list-scroll>
 		</swiper-item>
-
+	
 	</swiper>
+
 </template>
 
 <script>
-	import listItem from './list-item.vue'
 	export default {
-		components: {
-			listItem
-		},
 		props: {
 			tab: {
 				type: Array,
@@ -23,30 +23,33 @@
 			activeIndex: {
 				type: Number,
 				default: 0
-			}
+			},
 		},
 		data() {
 			return {
 				list: [],
 				// js 的限制 listCatchData[index] = data
 				listCatchData: {},
-				load: {},
-				pageSize: 20
+				load: {loading: "loading"},
+				// load: {},
+				pageSize: 20,
 			};
 		},
 		watch: {
 			tab(newVal) {
+				console.log(newVal);
 				if (newVal.length === 0) return
 				this.listCatchData = {}
 				this.load = {}
 				this.getList(this.activeIndex)
-			}
+			},
+			
 		},
 		// onLoad 在页面 ，created 组件
 		created() {
 			// TODO tab 还没有赋值
+			console.log(this.load[0]);
 			this.getList(0)
-			
 		},
 		methods: {
 			loadmore() {
@@ -63,6 +66,7 @@
 				if (!this.listCatchData[current] || this.listCatchData[current].length === 0) {
 					this.getList(current)
 				}
+				console.log(this.listCatchData[3]==undefined);
 
 			},
 			getList(current) {
@@ -72,14 +76,14 @@
 						loading: 'loading'
 					}
 				}
-				console.log('当前的页数',this.load[current].page);
-				console.log('name',this.tab[current]);
+				// console.log('当前的页数',this.load[current].page);
+				// console.log('name',this.tab[current]);
 				this.$api.get_list({
 					name: this.tab[current],
 					page: this.load[current].page,
 					pageSize: this.pageSize
 				}).then(res => {
-					console.log(res);
+					// console.log(res);
 					const {
 						data
 					} = res
@@ -94,11 +98,10 @@
 					}
 					let oldList = this.listCatchData[current] || []
 					oldList.push(...data)
-					
 					// 懒加载
 					this.$set(this.listCatchData, current, oldList)
 				})
-				
+
 			}
 		}
 	}

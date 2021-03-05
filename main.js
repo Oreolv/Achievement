@@ -7,6 +7,7 @@ Vue.use(uView);
 Vue.prototype.$api = api
 App.mpType = 'app'
 
+let _this = this
 const app = new Vue({
     ...App
 })

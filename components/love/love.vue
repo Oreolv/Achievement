@@ -1,5 +1,5 @@
 <template>
-	<swiper class="home-swiper" :current="activeIndex" @change="change">
+	<swiper class="home-swiper" :current="activeIndex" @change="change" disable-touch>
 		<swiper-item v-for="(item ,index) in tab" :key="index" class="swiper-item">
 			<love-item :list="listCatchData[index]" :load="load[index]" @loadmore="loadmore"></love-item>
 		</swiper-item>
@@ -72,14 +72,14 @@
 						loading: 'loading'
 					}
 				}
-				console.log('当前的页数',this.load[current].page);
-				console.log('name',this.tab[current]);
+				// console.log('当前的页数',this.load[current].page);
+				// console.log('name',this.tab[current]);
 				this.$api.get_love({
 					name: this.tab[current],
 					page: this.load[current].page,
 					pageSize: this.pageSize
 				}).then(res => {
-					console.log(res);
+					// console.log(res);
 					const {
 						data
 					} = res
@@ -107,6 +107,11 @@
 </script>
 
 <style lang="scss">
+	page {
+		height: 100%;
+		display: flex;
+		background-color: #f5f5f5;
+	}
 	.home-swiper {
 		height: 100%;
 

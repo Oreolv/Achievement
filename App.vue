@@ -1,14 +1,24 @@
+<!-- <template> -->
+	<!-- <u-toast ref="uToast" /> -->
+	<!-- <router-view v-if="isRouterAlive" /> -->
+<!-- </template> -->
+
 <script>
 	export default {
-		onLaunch: function() {
-			console.log('App Launch')
-		},
-		onShow: function() {
-			console.log('App Show')
-		},
-		onHide: function() {
-			console.log('App Hide')
-		}
+		// globalData: {
+		// 	tipShow: false
+		// },
+		// data() {
+		// 	return {
+		// 		isRouterAlive: true
+		// 	}
+		// },
+		// methods: {
+		// 	reload() {
+		// 		this.isRouterAlive = false
+		// 		this.$nextTick(() => (this.isRouterAlive = true))
+		// 	}
+		// }
 	}
 </script>
 

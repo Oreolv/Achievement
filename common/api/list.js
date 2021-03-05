@@ -14,9 +14,23 @@ export const get_love = (data) => {
 	})
 }
 
-export const update_movie = (data) => {
+export const add_list = (data) => {
 	return $http({
-		url: 'update_movie',
+		url: 'add_list',
+		data
+	})
+}
+
+export const add_love = (data) => {
+	return $http({
+		url: 'add_love',
+		data
+	})
+}
+
+export const delete_list = (data) => {
+	return $http({
+		url: 'delete_list',
 		data
 	})
 }
