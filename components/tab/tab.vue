@@ -56,7 +56,7 @@
 		border-bottom: 1px #f5f5f5 solid;
 		background-color: #fff;
 		box-sizing: border-box;
-		margin-bottom: 5px;
+		// margin-bottom: 5px;
 		.tab-scroll {
 			flex: 1;
 			overflow: hidden;

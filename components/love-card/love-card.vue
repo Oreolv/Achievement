@@ -1,6 +1,7 @@
 <template>
 	<view class="list-card" @click="open">
-		<u-cell-group>
+		<u-cell-group v-if="item.show==null">
+			<u-swipe-action :options="options"  @click="click" :key="item._id">
 				<u-cell-item :arrow="false" v-if="item.classify==='观影'" class="cell movie">
 					<view slot="title" class="list-card_box">
 						<view class="index"><slot></slot></view>
@@ -24,7 +25,11 @@
 						<text>天</text>
 					</view>
 				</u-cell-item>
+				</u-swipe-action>
 		</u-cell-group>
+		<uni-popup ref="popup" type="center" :maskClick="true">
+			<pop-love :classify="item.classify" title="修改记录" :list="item"></pop-love>
+		</uni-popup>
 	</view>
 </template>
 
@@ -40,12 +45,46 @@
 		},
 		data() {
 			return {
+				options: [{
+						text: '修改',
+						style: {
+							backgroundColor: '#007aff'
+						}
+					},
+					{
+						text: '删除',
+						style: {
+							backgroundColor: '#dd524d'
+						}
+					}
+				],
 			};
 		},
 		methods:{
 			open(){
 				console.log(this.item._id);
-			}
+			},
+			click(index, index1) {
+				if (index1 === 0) {
+					this.$refs.popup.open()
+				}
+				if (index1 === 1) {
+					this.$api.delete_love({
+						_id: this.item._id,
+					}).then(res => {
+						console.log(res);
+					})
+					uni.showToast({
+						title: '删除成功',
+						icon: 'none'
+					})
+					let _this = this
+					setTimeout(function() {
+						uni.$emit('reload',true)
+					}, 1500)
+			
+				}
+			},
 		}
 		
 	}

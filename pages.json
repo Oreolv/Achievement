@@ -11,7 +11,8 @@
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom",
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "首页",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
@@ -19,7 +20,8 @@
 			"style": {
 				"navigationStyle": "custom",
 				"navigationBarTitleText": "爱情",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": false,
+				"enablePullDownRefresh": true
 			}
 
 		}
@@ -27,7 +29,6 @@
 		, {
 			"path": "pages/test/test",
 			"style": {
-				"navigationStyle": "custom",
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
 			}

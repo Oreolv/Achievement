@@ -1,14 +1,14 @@
 <template>
-	<view class="list-card" @click="open">
+	<view class="list-card">
 		<u-cell-group v-if="item.show==null">
-			<u-swipe-action :options="options" btn-width="200" @click="click">
+			<u-swipe-action :options="options" btn-width="200" @click="click" :key="item._id">
 				<u-cell-item :arrow="false">
 					<view slot="title" class="list-card_box">
 						<view class="index">
 							<slot></slot>
 						</view>
 						<view class="status" v-if="item.classify==='电影'">
-							<u-tag v-if="item.status" type="success" text="已看完" size="mini" />
+							<u-tag v-if="item.status==='已看完'" type="success" text="已看完" size="mini" />
 							<u-tag v-else type="error" text="我想看" size="mini" />
 						</view>
 						<view class="status" v-else-if="item.classify==='图书'||item.classify==='小说'">
@@ -27,7 +27,11 @@
 				</u-cell-item>
 			</u-swipe-action>
 		</u-cell-group>
+		<uni-popup ref="popup" type="center" :maskClick="true">
+			<pop-list :classify="item.classify" title="修改记录" :list="item"></pop-list>
+		</uni-popup>
 	</view>
+	
 </template>
 
 <script>
@@ -63,7 +67,8 @@
 		methods: {
 			click(index, index1) {
 				if (index1 === 0) {
-					console.log('点击了修改');
+					// console.log(this.item._id);
+					this.$refs.popup.open()
 				}
 				if (index1 === 1) {
 					this.$api.delete_list({
@@ -76,9 +81,9 @@
 						icon: 'none'
 					})
 					let _this = this
-					this.item.show = 0
-					this.$forceUpdate()
-
+					setTimeout(function() {
+						uni.$emit('reload',true)
+					}, 1500)
 				}
 			},
 			onPageScroll(e) {

@@ -1,18 +1,18 @@
 <template>
 	<swiper class="home-swiper" :current="activeIndex" @change="change" disable-touch>
 		<swiper-item v-for="(item ,index) in tab" :key="index" class="swiper-item">
-			<love-item :list="listCatchData[index]" :load="load[index]" @loadmore="loadmore"></love-item>
+			<list-scroll class="list-scroll" @loadmore="loadmore" v-if="listCatchData[index]!=undefined">
+				<love-card :item="item" v-for="(item,index) in listCatchData[index]" :key="item._id">{{index+1}}．</love-card>
+				<uni-load-more  iconType="snow" :status="load[index].loading" v-if="listCatchData[index].length>19||listCatchData[index]==undefined"></uni-load-more>
+			</list-scroll>
 		</swiper-item>
-
+	
 	</swiper>
+	
 </template>
 
 <script>
-	import loveItem from './love-item.vue'
 	export default {
-		components: {
-			loveItem
-		},
 		props: {
 			tab: {
 				type: Array,
@@ -30,7 +30,8 @@
 				list: [],
 				// js 的限制 listCatchData[index] = data
 				listCatchData: {},
-				load: {},
+				load: {loading: "loading"},
+
 				pageSize: 20
 			};
 		},
@@ -46,6 +47,13 @@
 		created() {
 			// TODO tab 还没有赋值
 			this.getList(0)
+			let _this = this
+			uni.$on('reload',function(data){
+				if(data){
+					_this.listCatchData = {}
+					_this.getList(_this.activeIndex)
+				}
+			})
 			
 		},
 		methods: {
@@ -107,14 +115,14 @@
 </script>
 
 <style lang="scss">
-	page {
-		height: 100%;
-		display: flex;
-		background-color: #f5f5f5;
-	}
+	// page {
+	// 	height: 100%;
+	// 	display: flex;
+	// 	background-color: #f5f5f5;
+	// }
 	.home-swiper {
+		margin: 5px 0;
 		height: 100%;
-
 		.swiper-item {
 			height: 100%;
 			overflow: hidden;

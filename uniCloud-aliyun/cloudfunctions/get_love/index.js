@@ -26,10 +26,19 @@ exports.main = async (event, context) => {
 	var startDay,nowDay,dateSpan,tempDate,iDays;
 	var date = new Date();
 	var month = date.getMonth()
+	var day = date.getDate()
 	if(month<9){
-		var nowTime = date.getFullYear()+'-0'+Number(date.getMonth()+1)+'-'+date.getDate();
+		if(day<10){
+			var nowTime = date.getFullYear()+'-0'+Number(date.getMonth()+1)+'-0'+date.getDate();
+		}else{
+			var nowTime = date.getFullYear()+'-0'+Number(date.getMonth()+1)+'-'+date.getDate();
+		}
 	}else{
-		var nowTime = date.getFullYear()+'-'+Number(date.getMonth()+1)+'-'+date.getDate();
+		if(day<10){
+			var nowTime = date.getFullYear()+'-'+Number(date.getMonth()+1)+'-0'+date.getDate();
+		}else{
+			var nowTime = date.getFullYear()+'-'+Number(date.getMonth()+1)+'-'+date.getDate();
+		}
 	}
 	
 	if(name === '纪念'){

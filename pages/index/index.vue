@@ -6,18 +6,18 @@
 		<tab :list="tabList" :tabIndex="tabIndex" @tab="tab"></tab>
 		<view class="home-list">
 			<u-top-tips ref="uTips" :navbar-height="statusBarHeight + navbarHeight"></u-top-tips>
-			<list :tab="tabList" :activeIndex="activeIndex" @change="change"></list>
+			<list :tab="tabList" :activeIndex="activeIndex" @change="change" :toReload="reload"></list>
 
 		</view>
 		<uni-popup ref="popup" type="center" :maskClick="true">
-			<pop-box :classify="tabList[tabIndex]" title="添加记录"></pop-box>
+			<pop-list :classify="tabList[tabIndex]" title="添加记录">
+			</pop-list>
 		</uni-popup>
 
 	</view>
 </template>
 
 <script>
-	var tipShow = getApp().globalData.tipShow
 	export default {
 		data() {
 			return {
@@ -26,13 +26,23 @@
 				},
 				tabList: ['电影', '图书', '小说', '游戏'],
 				tabIndex: 0,
-				addList: {},
 				activeIndex: 0,
 				statusBarHeight: uni.getSystemInfoSync().statusBarHeight,
 				navbarHeight: 44,
+				reload: false
 			}
 		},
 		watch: {},
+		onShow() {
+			console.log(1);
+		},
+		onPullDownRefresh() {
+			uni.$emit('reload',true)
+			console.log("push");
+			setTimeout(function() {
+				uni.stopPullDownRefresh();
+			}, 1500);
+		},
 		methods: {
 			change(current) {
 				this.tabIndex = current
@@ -47,9 +57,7 @@
 				this.activeIndex = index
 			},
 			open() {
-				console.log();
 				this.$refs.popup.open()
-				console.log(this.tabList[this.tabIndex]);
 			},
 			close() {
 				this.$refs.popup.close()
@@ -65,7 +73,9 @@
 		display: flex;
 		background-color: #f5f5f5;
 	}
-
+	.submit {
+		margin-top: 10px;
+	}
 	.home {
 		display: flex;
 		flex-direction: column;

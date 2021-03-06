@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="popup-content" v-if="classify=='电影'">
+		<view class="popup-content">
 			<view class="pop-title">{{title}}</view>
 			<u-cell-group :border="false">
 				<u-cell-item :arrow="false">
@@ -16,37 +16,10 @@
 						<input placeholder="请输入名称" v-model="list.name"/>
 					</view>
 				</u-cell-item>
-				<u-cell-item :arrow="false">
-					<view class="slotbox rate" slot="title">
+				<u-cell-item :arrow="false" v-if="classify!='小说'">
+					<view class="slotbox rate" slot="title" >
 						<view class="title">评分</view>
 						<input placeholder="请输入评分" type="number" v-model="list.rate"/>
-					</view>
-				</u-cell-item>
-				<u-cell-item :arrow="false">
-					<view class="slotbox status" slot="title">
-						<text class="title">状态</text>
-						<picker @change="bindstatusPickerChange" :value="statusindex" :range="Astatus">
-							<view class="status-text">{{Astatus[statusindex]}}</view>
-						</picker>
-					</view>
-				</u-cell-item>
-			</u-cell-group>
-			<u-button type="success" class="submit" @click="submit">提交</u-button>
-		</view>
-		<view class="popup-content" v-else-if="classify=='图书'||classify=='小说'">
-			<view class="pop-title">{{title}}</view>
-			<u-cell-group :border="false">
-				<u-cell-item :arrow="false">
-					<view class="slotbox classify" slot="title">
-						<text class="title">分类</text>
-							<view class="classify-text">{{classify}}</view>
-						</picker>
-					</view>
-				</u-cell-item>
-				<u-cell-item :arrow="false">
-					<view class="slotbox name" slot="title">
-						<view class="title">名称</view>
-						<input placeholder="请输入名称" v-model="list.name"/>
 					</view>
 				</u-cell-item>
 				<u-cell-item :arrow="false" v-if="classify=='小说'">
@@ -55,16 +28,16 @@
 						<input placeholder="请输入作者" v-model="list.author"/>
 					</view>
 				</u-cell-item>
-				<u-cell-item :arrow="false" v-if="classify!='小说'">
-					<view class="slotbox rate" slot="title">
-						<view class="title">评分</view>
-						<input placeholder="请输入评分" type="number" v-model="list.rate"/>
-					</view>
-				</u-cell-item>
 				<u-cell-item :arrow="false">
-					<view class="slotbox status" slot="title">
+					<view class="slotbox status" slot="title" v-if="classify=='电影'">
 						<text class="title">状态</text>
 						<picker @change="bindstatusPickerChange" :value="statusindex" :range="Astatus">
+							<view class="status-text">{{Astatus[statusindex]}}</view>
+						</picker>
+					</view>
+					<view class="slotbox status" slot="title" v-else>
+						<text class="title">状态</text>
+						<picker @change="bindstatusPickerChange" :value="statusindex" :range="Bstatus">
 							<view class="status-text">{{Bstatus[statusindex]}}</view>
 						</picker>
 					</view>
@@ -72,6 +45,7 @@
 			</u-cell-group>
 			<u-button type="success" class="submit" @click="submit">提交</u-button>
 		</view>
+		
 	</view>
 	
 </template>
@@ -87,16 +61,23 @@
 				type: String,
 				default:'添加记录'
 			},
+			list:{
+				type: Object,
+				default(){
+					return {};
+				}
+			},
 		},
 		watch: {
 			
 		},
+		inject: ['popup'],
 		data() {
 			return {
 				statusindex: 0,
 				Astatus: ['已看完', '我想看'],
 				Bstatus: ['阅读中', '我想看', '已读完'],
-				list:[]
+				newList:{}
 			};
 		},
 		methods: {
@@ -105,32 +86,63 @@
 			},
 			submit(){
 				if(this.title=='添加记录'){
-					console.log(true);
-					this.list.classify = this.classify
 					if(this.classify=='电影'){
-						this.list.status = this.Astatus[this.statusindex]
+						this.newList.status = this.Astatus[this.statusindex]
+						if(this.newList.status=='已看完'){
+							
+						}
 					}else{
-						this.list.status = this.Bstatus[this.statusindex]
+						this.newList.status = this.Bstatus[this.statusindex]
 					}
 					this.$api.add_list({
 						name: this.list.name,
 						rate: this.list.rate,
-						classify: this.list.classify, 
-						status: this.list.status,
+						classify: this.classify, 
+						status: this.newList.status,
 						author: this.list.author,
 					}).then(res => {
 						console.log(res);
 					})
 					uni.showToast({
-						title:'成功添加一条记录',
+						title:'添加成功',
 					})
 					let _this = this
 					setTimeout(function() {
-						_this.list = []
-						location.reload()
+						// _this.list = []
+						// console.log(1);
+						uni.$emit('reload',true)
+						_this.popup.close()
+						// location.reload()
+					}, 1500)
+				}else{
+					if(this.classify=='电影'){
+						this.newList.status = this.Astatus[this.statusindex]
+					}else{
+						this.newList.status = this.Bstatus[this.statusindex]
+					}
+					this.$api.update_list({
+						_id: this.list._id,
+						name: this.list.name,
+						rate: this.list.rate,
+						classify: this.classify, 
+						status: this.newList.status,
+						author: this.list.author,
+					}).then(res => {
+						console.log(res);
+					})
+					uni.showToast({
+						title:'修改成功',
+					})
+					let _this = this
+					setTimeout(function() {
+						// _this.list = []
+						// console.log(1);
+						uni.$emit('reload',true)
+						_this.popup.close()
+						// location.reload()
 					}, 1500)
 				}
-			}
+			},
 		}
 	}
 </script>

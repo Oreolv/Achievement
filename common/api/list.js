@@ -34,3 +34,24 @@ export const delete_list = (data) => {
 		data
 	})
 }
+
+export const delete_love = (data) => {
+	return $http({
+		url: 'delete_love',
+		data
+	})
+}
+
+export const update_list = (data) => {
+	return $http({
+		url: 'update_list',
+		data
+	})
+}
+
+export const update_love = (data) => {
+	return $http({
+		url: 'update_love',
+		data
+	})
+}

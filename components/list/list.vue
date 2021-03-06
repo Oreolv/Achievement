@@ -3,10 +3,10 @@
 		<swiper-item v-for="(item ,index) in tab" :key="index" class="swiper-item">
 			<list-scroll class="list-scroll" @loadmore="loadmore" v-if="listCatchData[index]!=undefined">
 				<list-card :item="item" v-for="(item,index) in listCatchData[index]" :key="item._id">{{index+1}}．</list-card>
-				<uni-load-more  iconType="snow" :status="load[index].loading" v-if="listCatchData[index].length>19||listCatchData[index]==undefined"></uni-load-more>
+				<uni-load-more iconType="snow" :status="load[index].loading" v-if="listCatchData[index].length>19||listCatchData[index]==undefined"></uni-load-more>
 			</list-scroll>
 		</swiper-item>
-	
+
 	</swiper>
 
 </template>
@@ -24,13 +24,24 @@
 				type: Number,
 				default: 0
 			},
+			toReload: {
+				type: Boolean,
+				default: false
+			}
+		},
+		watch: {
+			toReload(toReload) {
+				console.log(1);
+			}
 		},
 		data() {
 			return {
 				list: [],
 				// js 的限制 listCatchData[index] = data
 				listCatchData: {},
-				load: {loading: "loading"},
+				load: {
+					loading: "loading"
+				},
 				// load: {},
 				pageSize: 20,
 			};
@@ -43,13 +54,18 @@
 				this.load = {}
 				this.getList(this.activeIndex)
 			},
-			
 		},
 		// onLoad 在页面 ，created 组件
 		created() {
 			// TODO tab 还没有赋值
-			console.log(this.load[0]);
 			this.getList(0)
+			let _this = this
+			uni.$on('reload',function(data){
+				if(data){
+					_this.listCatchData = {}
+					_this.getList(_this.activeIndex)
+				}
+			})
 		},
 		methods: {
 			loadmore() {
@@ -66,7 +82,6 @@
 				if (!this.listCatchData[current] || this.listCatchData[current].length === 0) {
 					this.getList(current)
 				}
-				console.log(this.listCatchData[3]==undefined);
 
 			},
 			getList(current) {
@@ -110,6 +125,7 @@
 <style lang="scss">
 	.home-swiper {
 		height: 100%;
+		margin: 5px 0;
 
 		.swiper-item {
 			height: 100%;
