@@ -95,6 +95,7 @@
 						this.newList.status = this.Bstatus[this.statusindex]
 					}
 					this.$api.add_list({
+						username:uni.getStorageSync('username'),
 						name: this.list.name,
 						rate: this.list.rate,
 						classify: this.classify, 

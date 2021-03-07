@@ -3,7 +3,7 @@
 const db = uniCloud.database()
 const cmd = db.command
 exports.main = async (event, context) => {
-	const {name,page=1,pageSize=10} = event
+	const {username,name,page=1,pageSize=10} = event
 	const list = await db.collection('list')
 	// .aggregate()
 	// .match({
@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
 	// 	_id: 0
 	// })
 	// // 要跳过多少数据
-	.where({classify:cmd.eq(name)})
+	.where({classify:cmd.eq(name),username:username})
 	.orderBy('rate','asc')
 	.skip(pageSize * (page - 1))
 	.limit(pageSize)

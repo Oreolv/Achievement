@@ -3,6 +3,7 @@ const db = uniCloud.database()
 exports.main = async (event, context) => {
 	//event为客户端上传的参数
 	const {
+		username,
 		name,
 		rate,
 		classify,
@@ -14,6 +15,7 @@ exports.main = async (event, context) => {
 	var nowTime = date.getFullYear() + '-' + Number(date.getMonth() + 1) + '-' + date.getDate();
 	const collection = db.collection('list')
 	let data = collection.add({
+		username:username,
 		name: name,
 		rate: rate,
 		classify: classify,

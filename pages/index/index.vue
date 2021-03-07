@@ -18,6 +18,7 @@
 </template>
 
 <script>
+	var loginRes;
 	export default {
 		data() {
 			return {
@@ -34,10 +35,19 @@
 		},
 		watch: {},
 		onShow() {
-			console.log(1);
+			loginRes = this.checkLogin('../index/index', 2)
+			if (!loginRes) {
+				return;
+			}
+		},
+		onLoad() {
+			loginRes = this.checkLogin('../index/index', 2)
+			if (!loginRes) {
+				return;
+			}
 		},
 		onPullDownRefresh() {
-			uni.$emit('reload',true)
+			uni.$emit('reload', true)
 			console.log("push");
 			setTimeout(function() {
 				uni.stopPullDownRefresh();
@@ -73,9 +83,11 @@
 		display: flex;
 		background-color: #f5f5f5;
 	}
+
 	.submit {
 		margin-top: 10px;
 	}
+
 	.home {
 		display: flex;
 		flex-direction: column;
