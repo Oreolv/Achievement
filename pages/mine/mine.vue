@@ -1,23 +1,22 @@
 <template>
 	<view>
-		<u-navbar :is-back="false" title="个人" :background="background" title-color="#000" titleBold></u-navbar>
 		<view class="mine-box">
 			<view class="header">
-				<view class="face">
+				<view class="u-skeleton-circle face">
 					<image :src="avatar.mine"></image>
 				</view>
 				<view class="info">
-					<view class="username">
+					<view class="u-skeleton-rect username">
 						{{username.mine}}
 					</view>
-					<view class="des">{{des}}</view>
+					<view class="u-skeleton-rect des">{{des}}</view>
 				</view>
 				<view class="setting">
 					<uni-icons type="gear" size="20"></uni-icons>
 				</view>
 			</view>
 			<u-line hair-line margin="10px"></u-line>
-			<view class="classify">
+			<view class="u-skeleton-fillet classify">
 				<view class="box">
 					<view class="count">{{count.movie}}</view>
 					<view class="name">电影</view>
@@ -36,24 +35,25 @@
 				</view>
 			</view>
 		</view>
-		<view class="love-box">
+		<view class="userinfo-fillet love-box" >
 			<view class="face-box">
-				<view class="face">
+				<view class="u-skeleton-circle face">
 					<image :src="avatar.mine"></image>
 				</view>
-				<view class="name">{{username.mine}}</view>
+				<view class="u-skeleton-rect name">{{username.mine}}</view>
 			</view>
 			<u-icon name="heart-fill" color="#FFC0CB" class="love-icon"></u-icon>
 			<view class="face-box">
-				<view class="face">
-					<image :src="avatar.cp"></image>
+				<view class="u-skeleton-circle face" >
+					<image :src="avatar.couple"></image>
 				</view>
-				<view class="name">{{username.cp}}</view>
+				<view class="u-skeleton-rect name">{{username.couple}}</view>
 			</view>
 		</view>
 		<view class="exit-box" @click="exit">
 			退出当前账号
 		</view>
+		<u-skeleton :loading="loading" :animation="true"></u-skeleton>
 	</view>
 </template>
 
@@ -62,13 +62,11 @@
 	export default {
 		data() {
 			return {
-				background: {
-					backgroundColor: '#fcfcfc'
-				},
 				avatar: {},
-				username: {},
-				count: {},
-				des: ''
+				username: {mine:'skeleton',couple:'skeleton'},
+				count: {book:0,movie:0,novel:0,travel:0,},
+				des: 'skeleton',
+				loading:true
 			}
 		},
 		methods: {
@@ -89,9 +87,9 @@
 		},
 		onLoad() {
 			this.avatar.mine = uni.getStorageSync('avatar')
-			this.avatar.cp = uni.getStorageSync('cpAvatar')
+			this.avatar.couple = uni.getStorageSync('cpAvatar')
 			this.username.mine = uni.getStorageSync('username')
-			this.username.cp = uni.getStorageSync('cpUsername')
+			this.username.couple = uni.getStorageSync('cpUsername')
 			let _this = this
 			uniCloud.callFunction({
 				name: 'user_info',
@@ -103,13 +101,9 @@
 					_this.des = res.result.userInfo.des
 				},
 			})
-			
-			// this.$http.get('https://tianqiapi.com/api?version=v6&appid=64342745&appsecret=Ke8amAg3&city=天津').then(res => {
-			// 	this.tianjin = res.body.tem1
-			// })
-			// this.$http.get('https://tianqiapi.com/api?version=v6&appid=64342745&appsecret=Ke8amAg3&city=重庆').then(res => {
-			// 	this.chongqing = res.body.tem1
-			// })
+			setTimeout(() => {
+							this.loading = false;
+						}, 1000)
 		},
 
 	}

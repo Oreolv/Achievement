@@ -5,9 +5,9 @@
   "usingComponents": {
     "u-navbar": "/uview-ui/components/u-navbar/u-navbar",
     "u-icon": "/uview-ui/components/u-icon/u-icon",
-    "tab": "/components/tab/tab",
-    "u-top-tips": "/uview-ui/components/u-top-tips/u-top-tips",
-    "love": "/components/love/love",
+    "u-tabs-swiper": "/uview-ui/components/u-tabs-swiper/u-tabs-swiper",
+    "love-card": "/components/love-card/love-card",
+    "uni-load-more": "/components/uni-load-more/uni-load-more",
     "uni-popup": "/components/uni-popup/uni-popup",
     "pop-love": "/components/pop-love/pop-love"
   }

@@ -1,11 +1,10 @@
 {
-  "navigationStyle": "custom",
-  "navigationBarTitleText": "爱情",
+  "navigationBarTitleText": "我的",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "u-navbar": "/uview-ui/components/u-navbar/u-navbar",
     "uni-icons": "/components/uni-icons/uni-icons",
     "u-line": "/uview-ui/components/u-line/u-line",
-    "u-icon": "/uview-ui/components/u-icon/u-icon"
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
+    "u-skeleton": "/uview-ui/components/u-skeleton/u-skeleton"
   }
 }

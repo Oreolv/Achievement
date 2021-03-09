@@ -11,7 +11,7 @@
 		<view class="re">
 			<u-input class="input" placeholder="请输入账号" height="80" v-model="username"></u-input>
 			<u-input class="input" placeholder="请输入密码" height="80" type="password" v-model="password"></u-input>
-			<u-button type="warning" shape="circle" class="register" @click="register">注册</u-button>
+			<u-button type="warning" shape="circle" class="register1" @click="register">注册</u-button>
 			<view class="between">已有账号？请登录</view>
 			<u-button type="warning" shape="circle" class="login" @click="login" plain>登录</u-button>
 		</view>
@@ -143,7 +143,7 @@
 			width: 100%;
 		}
 
-		.register {
+		.register1 {
 			margin: 10px 0;
 			margin-top: 20px;
 			width: 100%;

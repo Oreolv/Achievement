@@ -51,7 +51,7 @@
   display: flex;
 }
 .cell.movie .list-card_box .index {
-  width: 25px;
+  width: 30rpx;
 }
 .cell.movie .list-card_box .name {
   margin: 0 8px;

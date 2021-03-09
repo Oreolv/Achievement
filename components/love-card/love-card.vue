@@ -1,9 +1,10 @@
 <template>
 	<view class="love-card" @click="open">
 		<u-cell-group v-if="item.show==null">
-			<u-swipe-action :options="options" @click="click" :key="item._id">
-				<u-cell-item :arrow="false" v-if="item.classify==='观影'" class="cell movie">
+				<u-cell-item :arrow="false" v-if="item.classify==='观影'" class="cell movie" @longpress="showSheet">
+					<u-action-sheet :list="sheetList" v-model="show" :tips="{text:item.name}" @click="clickSheet"></u-action-sheet>
 					<view slot="title" class="list-card_box">
+						
 						<view class="index">
 							<slot></slot>
 						</view>
@@ -16,7 +17,8 @@
 						</view>
 					</view>
 				</u-cell-item>
-				<u-cell-item :arrow="false" v-else-if="item.classify==='纪念'" :label="item.date" class="cell anniversary">
+				<u-cell-item :arrow="false" v-else-if="item.classify==='纪念'" :label="item.date" class="cell anniversary" @longpress="showSheet">
+					<u-action-sheet :list="sheetList" v-model="show" :tips="{text:item.name}" @click="clickSheet"></u-action-sheet>
 					<view class="title" slot="title">{{item.name}}已经</view>
 					<view class="icons" slot="icon">
 						<text class="iconfont icon-aixin"></text>
@@ -26,7 +28,8 @@
 						<text>天</text>
 					</view>
 				</u-cell-item>
-				<u-cell-item :arrow="false" v-else-if="item.classify==='记录'" class="cell record">
+				<u-cell-item :arrow="false" v-else-if="item.classify==='记录'" class="cell record" @longpress="showSheet">
+					<u-action-sheet :list="sheetList" v-model="show" :tips="{text:item.name}" @click="clickSheet"></u-action-sheet>
 					<view slot="title" class="list-card_box">
 						<view class="header">
 							<view class="face">
@@ -36,7 +39,6 @@
 								<view class="username">{{item.username}}</view>
 								<view class="time">{{item.createTime}}</view>
 							</view>
-
 						</view>
 						<view class="content">
 							{{item.des}}
@@ -44,14 +46,15 @@
 						
 					</view>
 				</u-cell-item>
-				<u-cell-item :arrow="false" v-else="item.classify==='旅行'" class="cell travel" :label="item.startDate+'-'+item.endDate">
+				<u-cell-item :arrow="false" v-else="item.classify==='旅行'" class="cell travel" :label="item.startDate+'-'+item.endDate" @longpress="showSheet" >
+					<u-action-sheet :list="sheetList" v-model="show" :tips="{text:item.name}" @click="clickSheet"></u-action-sheet>
 					<view class="title" slot="title">{{item.region}}</view>
 					<view class="icons" slot="icon">
 						<text class="iconfont icon-diqiu"></text>
 					</view>
 				</u-cell-item>
 				
-			</u-swipe-action>
+			<!-- </u-swipe-action> -->
 		</u-cell-group>
 		<uni-popup ref="popup" type="center" :maskClick="true">
 			<pop-love :classify="item.classify" title="修改记录" :list="item"></pop-love>
@@ -71,44 +74,37 @@
 		},
 		data() {
 			return {
-				options: [{
-						text: '修改',
-						style: {
-							backgroundColor: '#007aff'
-						}
-					},
-					{
-						text: '删除',
-						style: {
-							backgroundColor: '#dd524d'
-						}
-					}
-				],
+				sheetList:[{
+					text: '修改',
+				}, {
+					color: 'red',
+					text: '删除'
+				}],
+				show: false
 			};
 		},
 		methods: {
-			open() {
-				console.log(this.item._id);
+			showSheet() {
+				this.show = !this.show
 			},
-			click(index, index1) {
-				if (index1 === 0) {
+			clickSheet(e){
+				if(e==0){
 					this.$refs.popup.open()
-				}
-				if (index1 === 1) {
-					this.$api.delete_love({
-						_id: this.item._id,
-					}).then(res => {
-						console.log(res);
-					})
-					uni.showToast({
-						title: '删除成功',
-						icon: 'none'
-					})
-					let _this = this
-					setTimeout(function() {
-						uni.$emit('reload', true)
-					}, 1500)
-
+				}else{
+					this.$api.delete_list({
+								_id: this.item._id,
+								username: uni.getStorageSync('username'),
+								classify: this.item.classify
+							}).then(res => {
+								console.log(res);
+							})
+							uni.showToast({
+								title: '删除成功'
+							})
+							let _this = this
+							setTimeout(function() {
+								uni.$emit('reload', true)
+							}, 1500)
 				}
 			},
 		}
@@ -126,7 +122,7 @@
 				display: flex;
 
 				.index {
-					width: 25px;
+					width: 30rpx;
 				}
 
 				.name {
@@ -173,7 +169,6 @@
 			// margin-bottom: 10px;
 			.header {
 				display: flex;
-
 				.face {
 					width: 50px;
 					height: 50px;

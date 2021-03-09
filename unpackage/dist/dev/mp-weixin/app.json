@@ -4,8 +4,7 @@
     "pages/love/love",
     "pages/mine/mine",
     "pages/register/register",
-    "pages/login/login",
-    "pages/test/test"
+    "pages/login/login"
   ],
   "subPackages": [],
   "window": {
@@ -16,8 +15,9 @@
   },
   "tabBar": {
     "color": "#000",
-    "selectedColor": "#F7BA2A",
-    "backgroundColor": "#fff",
+    "selectedColor": "#2979ff",
+    "backgroundColor": "#FFF",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/index/index",
@@ -35,12 +35,12 @@
         "pagePath": "pages/mine/mine",
         "iconPath": "static/tabbar/mine.png",
         "selectedIconPath": "static/tabbar/mine-active.png",
-        "text": "个人"
+        "text": "我的"
       }
     ]
   },
   "uniStatistics": {
-    "enable": true
+    "enable": false
   },
   "usingComponents": {}
 }
