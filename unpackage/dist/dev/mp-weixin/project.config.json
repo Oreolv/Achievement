@@ -42,7 +42,7 @@
   "compileType": "miniprogram",
   "libVersion": "",
   "appid": "wxbfaa0b09fc110606",
-  "projectname": "Resume",
+  "projectname": "浮生",
   "condition": {
     "search": {
       "list": []
@@ -54,7 +54,14 @@
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "",
+          "path": "",
+          "query": "",
+          "id": 0
+        }
+      ]
     }
   }
 }

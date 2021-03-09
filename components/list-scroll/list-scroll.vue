@@ -1,6 +1,6 @@
 <template>
 	<view class="scroll">
-		<scroll-view class="list-scroll" scroll-y @scrolltolower="loadmore">
+		<scroll-view class="list-scroll" scroll-y @scrolltolower="loadmore" :enable-flex="true">
 			<view>
 				<slot></slot>
 			</view>
@@ -32,6 +32,7 @@
 			height: 100%;
 			display: flex;
 			flex-direction: column;
+			width: 100%;
 		}
 	}
 </style>

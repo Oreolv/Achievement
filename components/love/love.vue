@@ -1,9 +1,9 @@
 <template>
 	<swiper class="home-swiper" :current="activeIndex" @change="change" disable-touch>
-		<swiper-item v-for="(item ,index) in tab" :key="index" class="swiper-item">
+		<swiper-item v-for="(item ,index) in tab" :key="item._id" class="swiper-item">
 			<list-scroll class="list-scroll" @loadmore="loadmore" v-if="listCatchData[index]!=undefined">
-				<love-card :item="item" v-for="(item,index) in listCatchData[index]" :key="item._id">{{index+1}}．</love-card>
-				<uni-load-more  iconType="snow" :status="load[index].loading" v-if="listCatchData[index].length>19||listCatchData[index]==undefined"></uni-load-more>
+				<love-card :item="item" v-for="(item,index1) in listCatchData[index]" :key="item._id">{{index1+1}}．</love-card>
+				<uni-load-more  iconType="snow" :status="load[index].loading" v-if="listCatchData[index].length>10" class="loadmore"></uni-load-more>
 			</list-scroll>
 		</swiper-item>
 	
@@ -52,6 +52,7 @@
 				if(data){
 					_this.listCatchData = {}
 					_this.getList(_this.activeIndex)
+					_this.$forceUpdate()
 				}
 			})
 			
@@ -108,18 +109,16 @@
 					// 懒加载
 					this.$set(this.listCatchData, current, oldList)
 				})
-				
+			this.$forceUpdate()	
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	// page {
-	// 	height: 100%;
-	// 	display: flex;
-	// 	background-color: #f5f5f5;
-	// }
+	.loadmore{
+		padding-bottom: 5px;
+	}
 	.home-swiper {
 		margin: 5px 0;
 		height: 100%;

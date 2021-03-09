@@ -2,7 +2,7 @@
 	<view class="register">
 		<u-navbar title="注册" :background="background" title-color="#000" titleBold></u-navbar>
 		<view class="logo">
-			<image src="../../static/logo.jpg" mode=""></image>
+			<image src="../../static/logo.png" mode=""></image>
 		</view>
 		<!-- <view class="title-box">
 			<view class="title">登录浮生</view>
@@ -58,7 +58,7 @@
 								title: '注册成功',
 								icon: 'none'
 							})
-							uni.setTimeout(function() {
+							setTimeout(function() {
 								uni.redirectTo({
 									url: '../login/login'
 								})
@@ -84,6 +84,9 @@
 </script>
 
 <style lang="scss">
+	page{
+		overflow: auto;
+	}
 	.between {
 		text-align: center;
 		font-size: 12px;

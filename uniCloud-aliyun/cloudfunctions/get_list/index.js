@@ -14,15 +14,21 @@ exports.main = async (event, context) => {
 	// })
 	// // 要跳过多少数据
 	.where({classify:cmd.eq(name),username:username})
+	
 	.orderBy('rate','asc')
 	.skip(pageSize * (page - 1))
 	.limit(pageSize)
+	
 	// .end()
 	.get()
+	
+	let count = await db.collection('list').where({classify:cmd.eq(name),username:username}
+	).count()
 	//返回数据给客户端
 	return {
 		code:200,
 		msg:'数据请求成功',
-		data:list.data
+		data:list.data,
+		count:count
 	}
 };

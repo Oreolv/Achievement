@@ -1,9 +1,11 @@
 <template>
-	<swiper class="home-swiper" :current="activeIndex" @change="change" disable-touch>
-		<swiper-item v-for="(item ,index) in tab" :key="index" class="swiper-item">
+	<swiper class="home-swiper" :current="activeIndex" @change="change" :disable-touch="true">
+		<swiper-item v-for="(item ,index) in tab" :key="item._id" class="swiper-item">
 			<list-scroll class="list-scroll" @loadmore="loadmore" v-if="listCatchData[index]!=undefined">
-				<list-card :item="item" v-for="(item,index) in listCatchData[index]" :key="item._id">{{index+1}}．</list-card>
-				<uni-load-more iconType="snow" :status="load[index].loading" v-if="listCatchData[index].length>19||listCatchData[index]==undefined"></uni-load-more>
+				<list-card :item="item" v-for="(item,index1) in listCatchData[index]" :key="item._id">{{index1+1}}．</list-card>
+				<uni-load-more iconType="snow" :status="load[index].loading" v-if="listCatchData[index].length>10"  class="loadmore"></uni-load-more>
+				
+				<!-- <uni-load-more iconType="snow" status="noMore"></uni-load-more> -->
 			</list-scroll>
 		</swiper-item>
 
@@ -65,6 +67,7 @@
 					if(data){
 						_this.listCatchData = {}
 						_this.getList(_this.activeIndex)
+						_this.$forceUpdate()
 					}
 				})
 			}
@@ -85,7 +88,7 @@
 				if (!this.listCatchData[current] || this.listCatchData[current].length === 0) {
 					this.getList(current)
 				}
-
+				console.log(this.listCatchData[this.activeIndex]);
 			},
 			getList(current) {
 				if (!this.load[current]) {
@@ -107,6 +110,7 @@
 						data
 					} = res
 					if (data.length === 0) {
+						console.log(1);
 						let oldLoad = {}
 						oldLoad.loading = 'noMore'
 						oldLoad.page = this.load[current].page
@@ -120,13 +124,19 @@
 					// 懒加载
 					this.$set(this.listCatchData, current, oldList)
 				})
-
+				this.$forceUpdate()
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
+	page{
+		height: 100%;
+	}
+	.loadmore{
+		padding-bottom: 5px;
+	}
 	.home-swiper {
 		height: 100%;
 		margin: 5px 0;

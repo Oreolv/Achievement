@@ -16,9 +16,14 @@
 							<u-tag v-else-if="item.status==='已读完'" type="success" :text="item.status" size="mini" />
 							<u-tag v-else type="error" :text="item.status" size="mini" />
 						</view>
+						<view class="status" v-else-if="item.classify==='游戏'">
+							<u-tag v-if="item.status==='游戏中'" type="primary" :text="item.status" size="mini" />
+							<u-tag v-else-if="item.status==='已通关'" type="success" :text="item.status" size="mini" />
+							<u-tag v-else type="info" :text="item.status" size="mini" />
+						</view>
 						<view class="name">{{item.name}}</view>
 						<!-- <view class="author">{{item.author}}</view> -->
-						<view class="rate" v-if="item.classify!='小说'">
+						<view class="rate" v-if="item.classify!='小说'&&item.classify!='游戏'">
 							<u-rate active-color="#F7BA2A" disabled :value="item.rate/2"></u-rate>
 							<text>{{item.rate}}分</text>
 						</view>
@@ -73,6 +78,8 @@
 				if (index1 === 1) {
 					this.$api.delete_list({
 						_id: this.item._id,
+						username:uni.getStorageSync('username'),
+						classify:this.item.classify
 					}).then(res => {
 						console.log(res);
 					})

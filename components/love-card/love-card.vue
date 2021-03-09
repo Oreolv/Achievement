@@ -1,5 +1,5 @@
 <template>
-	<view class="list-card" @click="open">
+	<view class="love-card" @click="open">
 		<u-cell-group v-if="item.show==null">
 			<u-swipe-action :options="options" @click="click" :key="item._id">
 				<u-cell-item :arrow="false" v-if="item.classify==='观影'" class="cell movie">
@@ -26,6 +26,31 @@
 						<text>天</text>
 					</view>
 				</u-cell-item>
+				<u-cell-item :arrow="false" v-else-if="item.classify==='记录'" class="cell record">
+					<view slot="title" class="list-card_box">
+						<view class="header">
+							<view class="face">
+								<image :src="item.avatar"></image>
+							</view>
+							<view class="info">
+								<view class="username">{{item.username}}</view>
+								<view class="time">{{item.createTime}}</view>
+							</view>
+
+						</view>
+						<view class="content">
+							{{item.des}}
+						</view>
+						
+					</view>
+				</u-cell-item>
+				<u-cell-item :arrow="false" v-else="item.classify==='旅行'" class="cell travel" :label="item.startDate+'-'+item.endDate">
+					<view class="title" slot="title">{{item.region}}</view>
+					<view class="icons" slot="icon">
+						<text class="iconfont icon-diqiu"></text>
+					</view>
+				</u-cell-item>
+				
 			</u-swipe-action>
 		</u-cell-group>
 		<uni-popup ref="popup" type="center" :maskClick="true">
@@ -94,6 +119,7 @@
 <style lang="scss">
 	@import '../../common/icon.css';
 
+	
 	.cell {
 		&.movie {
 			.list-card_box {
@@ -133,6 +159,69 @@
 				color: red;
 			}
 
+			.right-icon {
+				.days {
+					color: $uni-color-error;
+					font-weight: bold;
+					font-size: 20px;
+					margin-right: 5px;
+				}
+			}
+		}
+
+		&.record {
+			// margin-bottom: 10px;
+			.header {
+				display: flex;
+
+				.face {
+					width: 50px;
+					height: 50px;
+					overflow: hidden;
+					border-radius: 50%;
+					flex-shrink: 0;
+
+					image {
+						width: 100%;
+						height: 100%;
+					}
+				}
+
+				.info {
+					display: flex;
+					margin-left: 10px;
+					flex-direction: column;
+					justify-content: space-between;
+					width: 100%;
+
+					.username {
+						font-weight: bold;
+					}
+
+					.time {
+						color: #999;
+						font-size: 13px;
+					}
+				}
+			}
+
+			.content {
+				margin-top: 10px;
+				width: 100%;
+			}
+
+		}
+
+		&.travel {
+			.title {
+				color: #000;
+				font-weight: bold;
+			}
+			.iconfont {
+				margin-right: 15px;
+				font-size: 22px;
+				color: #0F4C81;
+			}
 			.right-icon {
 				.days {
 					color: $uni-color-error;

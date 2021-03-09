@@ -3,17 +3,29 @@ const db = uniCloud.database()
 exports.main = async (event, context) => {
 	//event为客户端上传的参数
 	const {
+		username,
+		avatar,
 		name,
 		date,
 		classify,
-		des
+		des,
+		createTime,
+		startDate,
+		endDate,
+		region
 	} = event
 	const collection = db.collection('love')
-	let data = collection.add({
+	let data = await collection.add({
 		name: name,
 		date: date,
 		classify: classify,
-		des: des
+		des: des,
+		username:username,
+		avatar:avatar,
+		createTime:createTime,
+		startDate:startDate,
+		endDate:endDate,
+		region:region
 	})
 	//返回数据给客户端
 	return {

@@ -1,8 +1,14 @@
 {
+  "navigationStyle": "custom",
   "navigationBarTitleText": "爱情",
   "enablePullDownRefresh": false,
   "usingComponents": {
+    "u-navbar": "/uview-ui/components/u-navbar/u-navbar",
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
     "tab": "/components/tab/tab",
-    "love": "/components/love/love"
+    "u-top-tips": "/uview-ui/components/u-top-tips/u-top-tips",
+    "love": "/components/love/love",
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "pop-love": "/components/pop-love/pop-love"
   }
 }

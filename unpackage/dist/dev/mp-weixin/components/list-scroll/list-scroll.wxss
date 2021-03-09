@@ -40,5 +40,6 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
           flex-direction: column;
+  width: 100%;
 }
 

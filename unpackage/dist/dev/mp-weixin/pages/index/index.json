@@ -1,8 +1,14 @@
 {
+  "navigationStyle": "custom",
   "navigationBarTitleText": "首页",
+  "enablePullDownRefresh": false,
   "usingComponents": {
+    "u-navbar": "/uview-ui/components/u-navbar/u-navbar",
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
     "tab": "/components/tab/tab",
-    "u-toast": "/uview-ui/components/u-toast/u-toast",
-    "list": "/components/list/list"
+    "u-top-tips": "/uview-ui/components/u-top-tips/u-top-tips",
+    "list": "/components/list/list",
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "pop-list": "/components/pop-list/pop-list"
   }
 }

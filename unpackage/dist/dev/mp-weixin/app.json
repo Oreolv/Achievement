@@ -2,6 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/love/love",
+    "pages/mine/mine",
+    "pages/register/register",
+    "pages/login/login",
     "pages/test/test"
   ],
   "subPackages": [],
@@ -12,8 +15,8 @@
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
-    "color": "#666",
-    "selectedColor": "#666",
+    "color": "#000",
+    "selectedColor": "#F7BA2A",
     "backgroundColor": "#fff",
     "list": [
       {
@@ -27,9 +30,17 @@
         "iconPath": "static/tabbar/love.png",
         "selectedIconPath": "static/tabbar/love-active.png",
         "text": "爱情"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "static/tabbar/mine.png",
+        "selectedIconPath": "static/tabbar/mine-active.png",
+        "text": "个人"
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap8.json"
+  "uniStatistics": {
+    "enable": true
+  },
+  "usingComponents": {}
 }

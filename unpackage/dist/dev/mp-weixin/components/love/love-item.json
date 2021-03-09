@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "list-scroll": "/components/list-scroll/list-scroll",
-    "love-card": "/components/love-card/love-card",
-    "uni-load-more": "/components/uni-load-more/uni-load-more"
-  },
-  "component": true
-}

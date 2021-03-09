@@ -1,8 +1,8 @@
 <template>
 	<view class="login">
-		<!-- <u-navbar :is-back="false" title="登录" :background="background" title-color="#000" titleBold></u-navbar> -->
+		<u-navbar :is-back="false" title="登录" :border-bottom="false" title-color="#000" titleBold></u-navbar>
 		<view class="logo">
-			<image src="../../static/logo.jpg" mode=""></image>
+			<image src="../../static/logo.png" mode=""></image>
 		</view>
 		<view class="title-box">
 			<view class="title">登录浮生</view>
@@ -11,7 +11,7 @@
 		<view class="re">
 			<u-input class="input" placeholder="请输入账号" height="80" v-model="username"></u-input>
 			<u-input class="input" placeholder="请输入密码" height="80" type="password" v-model="password"></u-input>
-			<u-button type="warning" shape="circle" class="login" @click="login">登录</u-button>
+			<u-button type="warning" shape="circle" class="loginB" @click="login">登录</u-button>
 			<view class="between">没有账号？请注册</view>
 			<u-button type="warning" shape="circle" class="register" @click="register" plain>注册</u-button>
 		</view>
@@ -52,8 +52,23 @@
 					},
 					success(res) {
 						if (res.result.code === 0) {
+							console.log(res);
 							uni.setStorageSync('token', res.result.token)
 							uni.setStorageSync('username', res.result.username)
+							uni.setStorageSync('avatar', res.result.userInfo.avatar)
+							uni.setStorageSync('uid', res.result.uid)
+							uni.setStorageSync('cpId', res.result.userInfo.cpId)
+							uniCloud.callFunction({
+								name: 'couple_info',
+								data: {
+									uid:res.result.userInfo.cpId
+								},
+								success(res) {
+									console.log(res);
+										uni.setStorageSync('cpAvatar', res.result.userInfo.avatar)
+										uni.setStorageSync('cpUsername', res.result.userInfo.username)
+								},
+							})
 							// 其他业务代码，如跳转到首页等
 							uni.showToast({
 								title: '登录成功',
@@ -89,6 +104,9 @@
 </script>
 
 <style lang="scss">
+	page{
+		overflow: auto;
+	}
 	.between {
 		text-align: center;
 		font-size: 12px;
@@ -140,7 +158,7 @@
 			padding: 5px;
 		}
 
-		.login {
+		.loginB {
 			margin: 10px 0;
 			margin-top: 20px;
 			width: 100%;

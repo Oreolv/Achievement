@@ -1,9 +1,12 @@
 {
   "usingComponents": {
     "u-cell-group": "/uview-ui/components/u-cell-group/u-cell-group",
+    "u-swipe-action": "/uview-ui/components/u-swipe-action/u-swipe-action",
     "u-cell-item": "/uview-ui/components/u-cell-item/u-cell-item",
     "u-tag": "/uview-ui/components/u-tag/u-tag",
-    "u-rate": "/uview-ui/components/u-rate/u-rate"
+    "u-rate": "/uview-ui/components/u-rate/u-rate",
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "pop-list": "/components/pop-list/pop-list"
   },
   "component": true
 }

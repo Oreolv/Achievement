@@ -23,7 +23,7 @@
 					backgroundColor: '#fcfcfc',
 				},
 				title: 'Hello',
-				tabList: ['观影','纪念','旅行','检讨'],
+				tabList: ['观影','纪念','旅行','记录'],
 				tabIndex:0,
 				activeIndex:0,
 				statusBarHeight: uni.getSystemInfoSync().statusBarHeight,

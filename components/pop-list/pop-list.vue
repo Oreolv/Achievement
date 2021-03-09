@@ -16,7 +16,7 @@
 						<input placeholder="请输入名称" v-model="list.name"/>
 					</view>
 				</u-cell-item>
-				<u-cell-item :arrow="false" v-if="classify!='小说'">
+				<u-cell-item :arrow="false" v-if="classify!='小说'&&classify!='游戏'">
 					<view class="slotbox rate" slot="title" >
 						<view class="title">评分</view>
 						<input placeholder="请输入评分" type="number" v-model="list.rate"/>
@@ -33,6 +33,12 @@
 						<text class="title">状态</text>
 						<picker @change="bindstatusPickerChange" :value="statusindex" :range="Astatus">
 							<view class="status-text">{{Astatus[statusindex]}}</view>
+						</picker>
+					</view>
+					<view class="slotbox status" slot="title" v-else-if="classify=='游戏'">
+						<text class="title">状态</text>
+						<picker @change="bindstatusPickerChange" :value="statusindex" :range="Cstatus">
+							<view class="status-text">{{Cstatus[statusindex]}}</view>
 						</picker>
 					</view>
 					<view class="slotbox status" slot="title" v-else>
@@ -77,6 +83,7 @@
 				statusindex: 0,
 				Astatus: ['已看完', '我想看'],
 				Bstatus: ['阅读中', '我想看', '已读完'],
+				Cstatus: ['已通关', '游戏中', '无限类'],
 				newList:{}
 			};
 		},
@@ -88,24 +95,37 @@
 				if(this.title=='添加记录'){
 					if(this.classify=='电影'){
 						this.newList.status = this.Astatus[this.statusindex]
-						if(this.newList.status=='已看完'){
-							
-						}
+					}else if(this.classify=='游戏'){
+						this.newList.status = this.Cstatus[this.statusindex]
 					}else{
 						this.newList.status = this.Bstatus[this.statusindex]
 					}
-					this.$api.add_list({
-						username:uni.getStorageSync('username'),
-						name: this.list.name,
-						rate: this.list.rate,
-						classify: this.classify, 
-						status: this.newList.status,
-						author: this.list.author,
-					}).then(res => {
-						console.log(res);
+					uniCloud.callFunction({
+						name: 'add_list',
+						data: {
+							username:uni.getStorageSync('username'),
+							name: this.list.name,
+							rate: this.list.rate,
+							classify: this.classify, 
+							status: this.newList.status,
+							author: this.list.author,
+						},
+						success(res) {
+							console.log(res);
+						},
 					})
+					// this.$api.add_list({
+					// 	username:uni.getStorageSync('username'),
+					// 	name: this.list.name,
+					// 	rate: this.list.rate,
+					// 	classify: this.classify, 
+					// 	status: this.newList.status,
+					// 	author: this.list.author,
+					// }).then(res => {
+					// 	console.log(res);
+					// })
 					uni.showToast({
-						title:'添加成功',
+						title:'添加成功'
 					})
 					let _this = this
 					setTimeout(function() {
@@ -118,6 +138,8 @@
 				}else{
 					if(this.classify=='电影'){
 						this.newList.status = this.Astatus[this.statusindex]
+					}else if(this.classify=='游戏'){
+						this.newList.status = this.Cstatus[this.statusindex]
 					}else{
 						this.newList.status = this.Bstatus[this.statusindex]
 					}

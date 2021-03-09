@@ -12,7 +12,7 @@
 			"style": {
 				"navigationStyle": "custom",
 				"navigationBarTitleText": "首页",
-				"enablePullDownRefresh": true
+				"enablePullDownRefresh": false
 			}
 		},
 		{
@@ -20,8 +20,7 @@
 			"style": {
 				"navigationStyle": "custom",
 				"navigationBarTitleText": "爱情",
-				"enablePullDownRefresh": false,
-				"enablePullDownRefresh": true
+				"enablePullDownRefresh": false
 			}
 
 		}
@@ -53,7 +52,16 @@
 			}
 
 		}
-	],
+	    ,{
+            "path" : "pages/test/test",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
@@ -61,8 +69,8 @@
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
-		"color": "#666",
-		"selectedColor": "#666",
+		"color": "#000",
+		"selectedColor": "#F7BA2A",
 		"backgroundColor": "#fff",
 		"list": [{
 			"pagePath": "pages/index/index",
