@@ -1,6 +1,5 @@
 <template>
 	<view class="register">
-		<u-navbar title="注册" :background="background" title-color="#000" titleBold></u-navbar>
 		<view class="logo">
 			<image src="../../static/logo.png" mode=""></image>
 		</view>

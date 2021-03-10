@@ -95,14 +95,11 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uniIcons: function() {
-      return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 151))
+    uIcon: function() {
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 93))
     },
     uLine: function() {
       return __webpack_require__.e(/*! import() | uview-ui/components/u-line/u-line */ "uview-ui/components/u-line/u-line").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-line/u-line.vue */ 159))
-    },
-    uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 93))
     },
     uSkeleton: function() {
       return __webpack_require__.e(/*! import() | uview-ui/components/u-skeleton/u-skeleton */ "uview-ui/components/u-skeleton/u-skeleton").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-skeleton/u-skeleton.vue */ 166))
@@ -246,6 +243,19 @@ var loginRes;var _default =
           url: '../login/login' });
 
       }, 1500);
+    },
+    getInfo: function getInfo() {
+      var _this = this;
+      uniCloud.callFunction({
+        name: 'user_info',
+        data: {
+          uid: uni.getStorageSync('uid') },
+
+        success: function success(res) {
+          _this.count = res.result.userInfo.count;
+          _this.des = res.result.userInfo.des;
+        } });
+
     } },
 
 
@@ -254,20 +264,13 @@ var loginRes;var _default =
     this.avatar.couple = uni.getStorageSync('cpAvatar');
     this.username.mine = uni.getStorageSync('username');
     this.username.couple = uni.getStorageSync('cpUsername');
-    var _this = this;
-    uniCloud.callFunction({
-      name: 'user_info',
-      data: {
-        uid: uni.getStorageSync('uid') },
-
-      success: function success(res) {
-        _this.count = res.result.userInfo.count;
-        _this.des = res.result.userInfo.des;
-      } });
-
+    this.getInfo();
     setTimeout(function () {
       _this2.loading = false;
     }, 1000);
+  },
+  onShow: function onShow() {
+    this.getInfo();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 15)["default"]))
 

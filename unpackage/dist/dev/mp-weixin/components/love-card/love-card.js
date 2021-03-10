@@ -82,11 +82,11 @@ try {
     uCellGroup: function() {
       return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 223))
     },
-    uCellItem: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 230))
-    },
     uActionSheet: function() {
       return __webpack_require__.e(/*! import() | uview-ui/components/u-action-sheet/u-action-sheet */ "uview-ui/components/u-action-sheet/u-action-sheet").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-action-sheet/u-action-sheet.vue */ 195))
+    },
+    uCellItem: function() {
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 230))
     },
     uTag: function() {
       return __webpack_require__.e(/*! import() | uview-ui/components/u-tag/u-tag */ "uview-ui/components/u-tag/u-tag").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-tag/u-tag.vue */ 202))
@@ -119,46 +119,14 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var a0 =
-    _vm.item.show == null && _vm.item.classify === "观影"
-      ? {
-          text: _vm.item.name
-        }
-      : null
-  var a1 =
-    _vm.item.show == null &&
-    !(_vm.item.classify === "观影") &&
-    _vm.item.classify === "纪念"
-      ? {
-          text: _vm.item.name
-        }
-      : null
-  var a2 =
-    _vm.item.show == null &&
-    !(_vm.item.classify === "观影") &&
-    !(_vm.item.classify === "纪念") &&
-    _vm.item.classify === "记录"
-      ? {
-          text: _vm.item.name
-        }
-      : null
-  var a3 =
-    _vm.item.show == null &&
-    !(_vm.item.classify === "观影") &&
-    !(_vm.item.classify === "纪念") &&
-    !(_vm.item.classify === "记录")
-      ? {
-          text: _vm.item.name
-        }
-      : null
+  var a0 = {
+    text: _vm.item.name
+  }
   _vm.$mp.data = Object.assign(
     {},
     {
       $root: {
-        a0: a0,
-        a1: a1,
-        a2: a2,
-        a3: a3
+        a0: a0
       }
     }
   )
@@ -256,9 +224,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 var _default2 =
 {
   props: {
@@ -272,6 +237,7 @@ var _default2 =
   data: function data() {
     return {
       sheetList: [{
+        color: 'black',
         text: '修改' },
       {
         color: 'red',

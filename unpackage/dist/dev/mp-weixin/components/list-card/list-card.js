@@ -195,6 +195,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default2 =
 {
   props: {
@@ -208,25 +236,16 @@ var _default2 =
   data: function data() {
     return {
       sheetList: [{
+        color: 'black',
         text: '修改' },
       {
         color: 'red',
         text: '删除' }],
 
-      show: false,
-      clickColor: '#FFF' };
-
-  },
-  created: function created() {
+      show: false };
 
   },
   methods: {
-    changeColor: function changeColor() {
-      // this.clickColor = '#F3F4F6'
-    },
-    reColor: function reColor() {
-      this.clickColor = '#FFF';
-    },
     showSheet: function showSheet() {
       this.show = !this.show;
     },
@@ -239,7 +258,7 @@ var _default2 =
           username: uni.getStorageSync('username'),
           classify: this.item.classify }).
         then(function (res) {
-          console.log(res);
+          // console.log(res);
         });
         uni.showToast({
           title: '删除成功' });

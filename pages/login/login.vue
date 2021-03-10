@@ -1,6 +1,5 @@
 <template>
 	<view class="login">
-		<u-navbar :is-back="false" title="登录" :border-bottom="false" title-color="#000" titleBold></u-navbar>
 		<view class="logo">
 			<image src="../../static/logo.png" mode=""></image>
 		</view>

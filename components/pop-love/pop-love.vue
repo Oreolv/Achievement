@@ -92,8 +92,8 @@
 				<u-cell-item :arrow="false" title-width="500">
 					<view class="slotbox des" slot="title">
 						<view class="title">描述</view>
-						<!-- <textarea class="textarea" placeholder="请输入内容"></textarea> -->
-						<u-input v-model="list.des" type="textarea" class="textarea"/>
+						<textarea maxlength="-1" auto-height placeholder="请输入内容" v-model="list.content"></textarea>
+						<!-- <u-input v-model="list.content" type="textarea" class="textarea"/> -->
 					</view>
 				</u-cell-item>
 			</u-cell-group>
@@ -155,6 +155,9 @@
 					if(this.classify!='旅行'){
 						this.region = undefined
 					}
+					if(this.classify=='记录'){
+						this.date = undefined
+					}
 					this.$api.add_love({
 						username:uni.getStorageSync('username'),
 						avatar:uni.getStorageSync('avatar'),
@@ -163,6 +166,7 @@
 						createTime:this.formatDate(date1.getTime()),
 						classify: this.classify,
 						des: this.list.des,
+						content:this.list.content,
 						startDate:this.regionDate.startDate,
 						endDate:this.regionDate.endDate,
 						region:this.region
@@ -184,6 +188,7 @@
 						date: this.date,
 						classify: this.classify,
 						des: this.list.des,
+						content:this.list.content
 					}).then(res => {
 						console.log(res);
 					})
@@ -215,9 +220,7 @@
 	.picker{
 		position: fixed;
 		bottom: 50px;
-	}
-	.textarea{
-		overflow: auto;
+		z-index: 90;
 	}
 	.popup-content {
 		margin: 0 20px;

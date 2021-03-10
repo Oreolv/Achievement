@@ -1,7 +1,6 @@
 'use strict';
 const db = uniCloud.database()
 exports.main = async (event, context) => {
-	//event为客户端上传的参数
 	const {
 		username,
 		avatar,
@@ -12,7 +11,8 @@ exports.main = async (event, context) => {
 		createTime,
 		startDate,
 		endDate,
-		region
+		region,
+		content
 	} = event
 	const collection = db.collection('love')
 	let data = await collection.add({
@@ -25,9 +25,9 @@ exports.main = async (event, context) => {
 		createTime:createTime,
 		startDate:startDate,
 		endDate:endDate,
-		region:region
+		region:region,
+		content:content
 	})
-	//返回数据给客户端
 	return {
 		code: 200,
 		msg: '数据请求成功',

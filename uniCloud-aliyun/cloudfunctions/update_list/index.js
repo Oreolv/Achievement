@@ -10,12 +10,10 @@ exports.main = async (event, context) => {
 		author
 	} = event
 	const collection = db.collection('list')
-	//返回数据给客户端
 	var date = new Date();
 	var month = date.getMonth()
 	var nowTime = date.getFullYear() + '-' + Number(date.getMonth() + 1) + '-' + date.getDate();
 	const data  = await collection.doc(_id).update({
-		// _id:_id,
 		name: name,
 		rate: rate,
 		classify: classify,

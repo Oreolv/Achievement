@@ -4,7 +4,6 @@ const dbCmd = db.command
 exports.main = async (event, context) => {
 	const {_id,username,classify} = event
 	const collection = db.collection('list')
-	//返回数据给客户端
 	const countcollection = db.collection('uni-id-users')
 	switch (classify) {
 		case '电影':

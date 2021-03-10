@@ -1,8 +1,9 @@
 <template>
-	<view class="love-card" @click="open">
-		<u-cell-group v-if="item.show==null">
-				<u-cell-item :arrow="false" v-if="item.classify==='观影'" class="cell movie" @longpress="showSheet">
-					<u-action-sheet :list="sheetList" v-model="show" :tips="{text:item.name}" @click="clickSheet"></u-action-sheet>
+	<view class="love-card">
+		<u-cell-group >
+				<u-action-sheet :list="sheetList" v-model="show" :tips="{text:item.name}" @click="clickSheet"></u-action-sheet>
+				<u-cell-item :arrow="false" v-show="item.classify==='观影'" class="cell movie" @longpress="showSheet">
+					
 					<view slot="title" class="list-card_box">
 						
 						<view class="index">
@@ -17,8 +18,7 @@
 						</view>
 					</view>
 				</u-cell-item>
-				<u-cell-item :arrow="false" v-else-if="item.classify==='纪念'" :label="item.date" class="cell anniversary" @longpress="showSheet">
-					<u-action-sheet :list="sheetList" v-model="show" :tips="{text:item.name}" @click="clickSheet"></u-action-sheet>
+				<u-cell-item :arrow="false" v-show="item.classify==='纪念'" :label="item.date" class="cell anniversary" @longpress="showSheet">
 					<view class="title" slot="title">{{item.name}}已经</view>
 					<view class="icons" slot="icon">
 						<text class="iconfont icon-aixin"></text>
@@ -28,8 +28,7 @@
 						<text>天</text>
 					</view>
 				</u-cell-item>
-				<u-cell-item :arrow="false" v-else-if="item.classify==='记录'" class="cell record" @longpress="showSheet">
-					<u-action-sheet :list="sheetList" v-model="show" :tips="{text:item.name}" @click="clickSheet"></u-action-sheet>
+				<u-cell-item :arrow="false" v-show="item.classify==='记录'" class="cell record" @longpress="showSheet">
 					<view slot="title" class="list-card_box">
 						<view class="header">
 							<view class="face">
@@ -41,20 +40,18 @@
 							</view>
 						</view>
 						<view class="content">
-							{{item.des}}
+							{{item.content}}
 						</view>
 						
 					</view>
 				</u-cell-item>
-				<u-cell-item :arrow="false" v-else="item.classify==='旅行'" class="cell travel" :label="item.startDate+'-'+item.endDate" @longpress="showSheet" >
-					<u-action-sheet :list="sheetList" v-model="show" :tips="{text:item.name}" @click="clickSheet"></u-action-sheet>
+				<u-cell-item :arrow="false" v-show="item.classify==='旅行'" class="cell travel" :label="item.startDate+'-'+item.endDate" @longpress="showSheet" >
 					<view class="title" slot="title">{{item.region}}</view>
 					<view class="icons" slot="icon">
 						<text class="iconfont icon-diqiu"></text>
 					</view>
 				</u-cell-item>
 				
-			<!-- </u-swipe-action> -->
 		</u-cell-group>
 		<uni-popup ref="popup" type="center" :maskClick="true">
 			<pop-love :classify="item.classify" title="修改记录" :list="item"></pop-love>
@@ -75,6 +72,7 @@
 		data() {
 			return {
 				sheetList:[{
+					color: 'black',
 					text: '修改',
 				}, {
 					color: 'red',
@@ -113,9 +111,6 @@
 </script>
 
 <style lang="scss">
-	@import '../../common/icon.css';
-
-	
 	.cell {
 		&.movie {
 			.list-card_box {

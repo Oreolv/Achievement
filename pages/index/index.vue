@@ -1,9 +1,13 @@
 <template>
 	<view>
 		<view class="wrap">
-			<!-- <uni-nav-bar left-text="添加" title="首页"></uni-nav-bar> -->
 			<u-navbar :is-back="false" title="首页" height="44" title-color="#000" titleBold>
+				<!-- #ifndef MP-WEIXIN -->
+				<u-icon name="plus-circle" slot="right" class="icon" @click="open"></u-icon>
+				<!-- #endif -->
+				<!-- #ifdef MP-WEIXIN -->
 				<u-icon name="plus-circle" class="icon" @click="open"></u-icon>
+				<!-- #endif -->
 			</u-navbar>
 			<view class="u-tabs-box">
 				<u-tabs-swiper ref="uTabs" :list="tabList" :current="current" @change="tabsChange" :is-scroll="false"></u-tabs-swiper>
@@ -157,7 +161,7 @@
 	}
 
 	.icon {
-		margin-left: 15px;
+		margin: 0 15px;
 		font-size: 22px;
 	}
 

@@ -201,8 +201,74 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default2 =
 {
+  inject: ['popup'],
   props: {
     classify: {
       type: String,
@@ -219,10 +285,6 @@ var _default2 =
       } } },
 
 
-  watch: {},
-
-
-  inject: ['popup'],
   data: function data() {
     return {
       statusindex: 0,
@@ -256,29 +318,17 @@ var _default2 =
             author: this.list.author },
 
           success: function success(res) {
-            console.log(res);
+            // console.log(res);
           } });
 
-        // this.$api.add_list({
-        // 	username:uni.getStorageSync('username'),
-        // 	name: this.list.name,
-        // 	rate: this.list.rate,
-        // 	classify: this.classify, 
-        // 	status: this.newList.status,
-        // 	author: this.list.author,
-        // }).then(res => {
-        // 	console.log(res);
-        // })
+
         uni.showToast({
           title: '添加成功' });
 
         var _this = this;
         setTimeout(function () {
-          // _this.list = []
-          // console.log(1);
           uni.$emit('reload', true);
           _this.popup.close();
-          // location.reload()
         }, 1500);
       } else {
         if (this.classify == '电影') {
@@ -303,11 +353,8 @@ var _default2 =
 
         var _this2 = this;
         setTimeout(function () {
-          // _this.list = []
-          // console.log(1);
           uni.$emit('reload', true);
           _this2.popup.close();
-          // location.reload()
         }, 1500);
       }
     } } };exports.default = _default2;

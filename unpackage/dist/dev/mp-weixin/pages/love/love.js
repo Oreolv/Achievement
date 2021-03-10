@@ -195,6 +195,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 var loginRes;var _default =
 {
@@ -230,6 +235,9 @@ var loginRes;var _default =
 
   },
   methods: {
+    open: function open() {
+      this.$refs.popup.open();
+    },
     tabsChange: function tabsChange(index) {
       this.swiperCurrent = index;
     },
@@ -264,8 +272,8 @@ var loginRes;var _default =
         page: this.load[current].page,
         pageSize: this.pageSize }).
       then(function (res) {
-        // console.log(res);
-        var
+        console.log(res.data);var
+
         data =
         res.data;
         if (data.length === 0) {

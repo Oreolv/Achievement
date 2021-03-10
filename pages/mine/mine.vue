@@ -1,6 +1,6 @@
 <template>
-	<view>
-		<view class="mine-box">
+	<view class="u-skeleton">
+		<view class="u-skeleton mine-box">
 			<view class="header">
 				<view class="u-skeleton-circle face">
 					<image :src="avatar.mine"></image>
@@ -12,7 +12,7 @@
 					<view class="u-skeleton-rect des">{{des}}</view>
 				</view>
 				<view class="setting">
-					<uni-icons type="gear" size="20"></uni-icons>
+					<u-icon name="setting-fill"></u-icon>
 				</view>
 			</view>
 			<u-line hair-line margin="10px"></u-line>
@@ -35,7 +35,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="userinfo-fillet love-box" >
+		<view class="u-skeleton love-box" >
 			<view class="face-box">
 				<view class="u-skeleton-circle face">
 					<image :src="avatar.mine"></image>
@@ -82,6 +82,19 @@
 						url: '../login/login'
 					})
 				}, 1500)
+			},
+			getInfo(){
+				let _this = this
+				uniCloud.callFunction({
+					name: 'user_info',
+					data: {
+						uid: uni.getStorageSync('uid')
+					},
+					success(res) {
+						_this.count = res.result.userInfo.count
+						_this.des = res.result.userInfo.des
+					},
+				})
 			}
 
 		},
@@ -90,21 +103,14 @@
 			this.avatar.couple = uni.getStorageSync('cpAvatar')
 			this.username.mine = uni.getStorageSync('username')
 			this.username.couple = uni.getStorageSync('cpUsername')
-			let _this = this
-			uniCloud.callFunction({
-				name: 'user_info',
-				data: {
-					uid: uni.getStorageSync('uid')
-				},
-				success(res) {
-					_this.count = res.result.userInfo.count
-					_this.des = res.result.userInfo.des
-				},
-			})
+			this.getInfo()
 			setTimeout(() => {
 							this.loading = false;
 						}, 1000)
 		},
+		onShow() {
+			this.getInfo()
+		}
 
 	}
 </script>

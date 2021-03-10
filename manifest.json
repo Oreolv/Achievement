@@ -86,14 +86,14 @@
             }
         },
         "uniStatistics" : {
-            "enable" : true
+            "enable" : false
         }
     },
     /* 快应用特有相关 */
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "wxbfaa0b09fc110606",
+        "appid" : "wxa2062c9502133ab2",
         "setting" : {
             "urlCheck" : true,
             "es6" : true,
@@ -108,23 +108,23 @@
     "mp-alipay" : {
         "usingComponents" : true,
         "uniStatistics" : {
-            "enable" : true
+            "enable" : false
         }
     },
     "mp-baidu" : {
         "usingComponents" : true,
         "uniStatistics" : {
-            "enable" : true
+            "enable" : false
         }
     },
     "mp-toutiao" : {
         "usingComponents" : true,
         "uniStatistics" : {
-            "enable" : true
+            "enable" : false
         }
     },
     "uniStatistics" : {
-        "enable" : true
+        "enable" : false
     },
     "h5" : {
         "title" : "浮生",
@@ -137,7 +137,7 @@
             }
         },
         "uniStatistics" : {
-            "enable" : true
+            "enable" : false
         },
         "devServer" : {
             "https" : true
@@ -145,7 +145,7 @@
     },
     "mp-qq" : {
         "uniStatistics" : {
-            "enable" : true
+            "enable" : false
         }
     }
 }

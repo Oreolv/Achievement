@@ -11,6 +11,27 @@
  *
  * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
  */
+@font-face {font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_2380716_6mfvtt1gbdo.eot?t=1615192330500'); /* IE9 */
+  src: url('//at.alicdn.com/t/font_2380716_6mfvtt1gbdo.eot?t=1615192330500#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAATAAAsAAAAACSgAAAR0AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqGEIR9ATYCJAMMCwgABCAFhG0HNxvEB1FUTYpkH4np1g4ZVVVRSwwhzhZi+B0P/+1Hu29mvqxp202qXZXEIalESiGRCqETCiHSRPPmP/x7WgZl1pvo4qDipcvqNLPPQHCQv4b/uZze6nlg81uW0xyLDwOMAwporE2B3AuwKDBOqGHsJvIg9xPoNS2Y1lFuMQcxVIBhgXiPSwSIYcKoVNBDq6kL5pavMZeeNn1MNyE+eZ+P/yLDkKTKwEH3XuaIkfRfm78KdTq6DlNyr87h7FAWkbECUYiHhc4HdILkCh29llK3urBWhDRUZLzDE9rqeqE/vETUgLKfpy0o0kGJMJfg14WAVzn+b6nR4I64HIBaFPmRiQkM87SzFDDveewHPv2OS71toigOTXNZls8wM1aei9ty5MghW9tFixCHhTZLV9nuouOGzwXvvBm9cfP2476HKZeljh6LlsVkdmr7w0cdlh5zXrHNdtGhIzs8qjjxFq/YYr9l+Ni2Y4f8WJa3PXbzQe+Nh+2W77Bfsfv48YNHD253XrJ488LG5dt9t692XpO25IhjyCKfTUf8TrB5Wzp9D1LBC7ce3A78hw/aHJ3i8lWOi445LjvSvNiOec25z3BQ24tUMvOSQz3kwmPDSXwuuU1yh2WZhoUb7RbbYQzDt2dZbkoaS3NpimMqztPz+PMQZmrG2x/qAaD3EOoBINKoxnTB8VO6IyO6vOyUzOel4v/wLyn2aEfF9NkBY+JMG60//ITymD3zSrWFQR/9PUY4wvHb1pneleZ/oANAnQLSu/1vHc04tyH7591320emiH52kA46maiXfodXkO6ucIFnkZmqN6RImczbV6FFru5qmd2bEdT1Z+PnIl+jr+mnnC5MrL1lZtkiuRM5Jvs1Y09s/YvQ0GyOtShQcDYret2Lb+3RaQdJxYhTQHGh3c77t4PUG4eEIzO+91XXYQJU9+3kzpnBhYZGwyfTgkSyqRY6uFAs0TZ/gi9Z6s5zXw747EXmz3eJq9PvXW5OiXzfIFocadVCFuTrnT8q2V6Sc6mUZ/7/VZZzJRcXZJbrXjouuftBg2uWRFjPn71nz2Su65eMmrLkU0b5ORWDAYhurGuvq3V6/5vjPF33KJhunnzX9hXw7b026kmbuRHtXXUFf4m+hhXIqNSWAFMupkKl0A1ln/VsT/AC19IhwDvqeXfVxOBC6m5NRJA0piBrzaCFtgKVPjtQa+1Cr2V5i/uMIeiI0oMlvRyEYXsgGfQFsmG30EJ7BpVJ36A2HDrQ635Yr9lnLnA0i4ACEoqBsBHgIqUCQxYS9SsroaRWJiDiEo/Bg4QGj4CI0PB0Jg8qIDHEBE2dJJIkMYARSjnI5Q6DMpkSqAhlDRSRodUkqUoMC8OKnhQqUsoR1CECJECCxAChRgBOREkBo41JaOb9lSCJWjICRAWpxcsDETTw1oEIocIboHlKRSPSpTyiUUciEomEATAEJTkgl7NDMphUAlTFvWpAIqRQ1R3iKonChHpYU2Xo9Gr5/W2CXmDLHClyFNVzXI3X6gnwBlyBIA==') format('woff2'),
+  url('//at.alicdn.com/t/font_2380716_6mfvtt1gbdo.woff?t=1615192330500') format('woff'),
+  url('//at.alicdn.com/t/font_2380716_6mfvtt1gbdo.ttf?t=1615192330500') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('//at.alicdn.com/t/font_2380716_6mfvtt1gbdo.svg?t=1615192330500#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont.data-v-2b1712d8 {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-diqiu.data-v-2b1712d8:before {
+  content: "\e631";
+}
+.icon-aixin.data-v-2b1712d8:before {
+  content: "\e64a";
+}
 /* 颜色变量 */
 /* 行为相关颜色 */
 /* 文字基本颜色 */

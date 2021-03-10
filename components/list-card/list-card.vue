@@ -1,29 +1,57 @@
 <template>
 	<view class="list-card">
-		
-		<view class="list-card_box" @longpress="showSheet" @click="changeColor" @onmouseup="reColor" :style="{'background-color':clickColor}">
+		<view class="home-box" @longpress="showSheet">
 			<u-action-sheet :list="sheetList" v-model="show" :tips="{text:item.name}" @click="clickSheet"></u-action-sheet>
-			<view class="index">
-				<slot></slot>
+			<view class="box movie" v-if="item.classify=='电影'">
+				<view class="index">
+					<slot></slot>
+				</view>
+				<view class="status">
+					<u-tag v-show="item.status=='已看完'" type="success" text="已看完" size="mini" />
+					<u-tag v-show="item.status=='我想看'" type="error" text="我想看" size="mini" />
+				</view>
+				<view class="name">{{item.name}}</view>
+				<view class="rate">
+					<uni-rate :size="16" v-model="item.rate/2" allow-half readonly activeColor="#F7BA2A" margin="5" />
+					<view style="margin-left: 10px;">{{item.rate}}分</view>
+				</view>
 			</view>
-			<view class="status" v-if="item.classify==='电影'">
-				<u-tag v-if="item.status==='已看完'" type="success" text="已看完" size="mini" />
-				<u-tag v-else type="error" text="我想看" size="mini" />
+			<view class="box book" v-if="item.classify=='图书'">
+				<view class="index">
+					<slot></slot>
+				</view>
+				<view class="status">
+					<u-tag v-show="item.status=='阅读中'" type="primary" :text="item.status" size="mini" />
+					<u-tag v-show="item.status=='已读完'" type="success" :text="item.status" size="mini" />
+					<u-tag v-show="item.status=='我想看'" type="error" :text="item.status" size="mini" />
+				</view>
+				<view class="name">{{item.name}}</view>
+				<view class="rate">
+					<uni-rate :size="16" v-model="item.rate/2" allow-half readonly activeColor="#F7BA2A" margin="5" />
+					<view style="margin-left: 10px;">{{item.rate}}分</view>
+				</view>
 			</view>
-			<view class="status" v-else-if="item.classify==='图书'||item.classify==='小说'">
-				<u-tag v-if="item.status==='阅读中'" type="primary" :text="item.status" size="mini" />
-				<u-tag v-else-if="item.status==='已读完'" type="success" :text="item.status" size="mini" />
-				<u-tag v-else type="error" :text="item.status" size="mini" />
+			<view class="box novel" v-if="item.classify=='小说'">
+				<view class="index">
+					<slot></slot>
+				</view>
+				<view class="status">
+					<u-tag v-show="item.status=='阅读中'" type="primary" :text="item.status" size="mini" />
+					<u-tag v-show="item.status=='已读完'" type="success" :text="item.status" size="mini" />
+					<u-tag v-show="item.status=='我想看'" type="error" :text="item.status" size="mini" />
+				</view>
+				<view class="name">{{item.name}}</view>
 			</view>
-			<view class="status" v-else-if="item.classify==='游戏'">
-				<u-tag v-if="item.status==='游戏中'" type="primary" :text="item.status" size="mini" />
-				<u-tag v-else-if="item.status==='已通关'" type="success" :text="item.status" size="mini" />
-				<u-tag v-else type="info" :text="item.status" size="mini" />
-			</view>
-			<view class="name">{{item.name}}</view>
-			<view class="rate" v-if="item.classify!='小说'&&item.classify!='游戏'">
-				<uni-rate :size="16" v-model="item.rate/2" allow-half readonly activeColor="#F7BA2A" margin="5" />
-				<view style="margin-left: 10px;">{{item.rate}}分</view>
+			<view class="box game" v-if="item.classify=='游戏'">
+				<view class="index">
+					<slot></slot>
+				</view>
+				<view class="status">
+					<u-tag v-show="item.status=='游戏中'" type="primary" :text="item.status" size="mini" />
+					<u-tag v-show="item.status=='已通关'" type="success" :text="item.status" size="mini" />
+					<u-tag v-show="item.status=='无限类'" type="info" :text="item.status" size="mini" />
+				</view>
+				<view class="name">{{item.name}}</view>
 			</view>
 		</view>
 		<uni-popup ref="popup" type="center" :maskClick="true">
@@ -46,25 +74,16 @@
 		data() {
 			return {
 				sheetList:[{
+					color: 'black',
 					text: '修改',
 				}, {
 					color: 'red',
 					text: '删除'
 				}],
 				show: false,
-				clickColor:'#FFF'
 			};
 		},
-		created() {
-
-		},
 		methods: {
-			changeColor(){
-				// this.clickColor = '#F3F4F6'
-			},
-			reColor(){
-				this.clickColor = '#FFF'
-			},
 			showSheet() {
 				this.show = !this.show
 			},
@@ -77,7 +96,7 @@
 								username: uni.getStorageSync('username'),
 								classify: this.item.classify
 							}).then(res => {
-								console.log(res);
+								// console.log(res);
 							})
 							uni.showToast({
 								title: '删除成功'
@@ -94,43 +113,42 @@
 </script>
 
 <style lang="scss">
-	.list-card_box {
+	.home-box {
 		width: 100%;
 		display: flex;
 		align-items: center;
 		padding: 15px;
 		border-bottom: 1px #ebeef5 solid;
-
+		background-color: #FFF;
 		&:first-child {
 			border-top: 1px #ebeef5 solid;
 		}
-
-		background-color: #FFF;
-
-		.index {
-			width: 120rpx;
-		}
-
-		.name {
-			margin: 0 8px;
-			text-overflow: ellipsis;
-			overflow: hidden;
-			white-space: nowrap;
-			// width: 25vh;
-			width: 60%;
-		}
-
-		.rate {
+		
+		.box{
 			display: flex;
-			align-items: center;
-			// width: 80%;
-			white-space: nowrap;
+			width: 100%;
+			.index {
+				width: 50rpx;
+				flex-direction: 0;
+			}
+			.name {
+				margin: 0 8px;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+			.rate {
+				display: flex;
+				align-items: center;
+				white-space: nowrap;
+				margin-left: auto;
+			}
+			.status {
+				white-space: nowrap;
+				display: flex;
+			}
 		}
 
-		.status {
-			// width: 100%;
-			white-space: nowrap;
-			display: flex;
-		}
+		
 	}
 </style>

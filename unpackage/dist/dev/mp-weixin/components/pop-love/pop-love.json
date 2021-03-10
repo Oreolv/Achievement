@@ -4,7 +4,6 @@
     "u-cell-item": "/uview-ui/components/u-cell-item/u-cell-item",
     "date-picker": "/components/date-picker/date-picker",
     "u-picker": "/uview-ui/components/u-picker/u-picker",
-    "u-input": "/uview-ui/components/u-input/u-input",
     "u-button": "/uview-ui/components/u-button/u-button"
   },
   "component": true

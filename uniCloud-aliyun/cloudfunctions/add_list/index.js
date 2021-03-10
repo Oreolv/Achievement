@@ -2,7 +2,6 @@
 const db = uniCloud.database()
 const dbCmd = db.command
 exports.main = async (event, context) => {
-	//event为客户端上传的参数
 	const {
 		username,
 		name,
@@ -64,8 +63,7 @@ exports.main = async (event, context) => {
 		author: author,
 		createTime: nowTime
 	})
-	console.log(data);
-	//返回数据给客户端
+	
 	return {
 		code: 200,
 		msg: '数据请求成功',

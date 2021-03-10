@@ -9,20 +9,7 @@ exports.main = async (event, context) => {
 	.orderBy('rate','asc')
 	.skip(pageSize * (page - 1))
 	.limit(pageSize)
-	// .end()
 	.get()
-	// .aggregate()
-	// .match({
-	// 	classify:name
-	// })
-	// .project({
-	// 	content: 0
-	// })
-	// // 要跳过多少数据
-	// .skip(pageSize * (page - 1))
-	// .limit(pageSize)
-	// .end()
-	//返回数据给客户端
 	var startDay,nowDay,dateSpan,tempDate,iDays;
 	var date = new Date();
 	var month = date.getMonth()

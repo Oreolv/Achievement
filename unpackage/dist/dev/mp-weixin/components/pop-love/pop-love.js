@@ -91,9 +91,6 @@ try {
     uPicker: function() {
       return Promise.all(/*! import() | uview-ui/components/u-picker/u-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-picker/u-picker")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-picker/u-picker.vue */ 244))
     },
-    uInput: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-input/u-input.vue */ 173))
-    },
     uButton: function() {
       return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 181))
     }
@@ -314,6 +311,9 @@ var _default2 =
         if (this.classify != '旅行') {
           this.region = undefined;
         }
+        if (this.classify == '记录') {
+          this.date = undefined;
+        }
         this.$api.add_love({
           username: uni.getStorageSync('username'),
           avatar: uni.getStorageSync('avatar'),
@@ -322,6 +322,7 @@ var _default2 =
           createTime: this.formatDate(date1.getTime()),
           classify: this.classify,
           des: this.list.des,
+          content: this.list.content,
           startDate: this.regionDate.startDate,
           endDate: this.regionDate.endDate,
           region: this.region }).
@@ -342,7 +343,8 @@ var _default2 =
           name: this.list.name,
           date: this.date,
           classify: this.classify,
-          des: this.list.des }).
+          des: this.list.des,
+          content: this.list.content }).
         then(function (res) {
           console.log(res);
         });
