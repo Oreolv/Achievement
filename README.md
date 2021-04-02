@@ -10,6 +10,12 @@
 
 除这些以为，还会陆续添加模块。
 
+### 更新
+
+目前因为时间问题，还有好多功能没有实现。
+
 ### 预览
 
-![27_820_2ee6b3d5438955fdca0b4e4c541379b6_f0c8657432381e4f35a101de3d46f2e9](https://tva1.sinaimg.cn/large/008eGmZEgy1gp57wfkorvj30b40b4wep.jpg)
+测试账号：Adam 密码：Adam
+
+![27_820_2ee6b3d5438955fdca0b4e4c541379b6_f0c8657432381e4f35a101de3d46f2e9](http://img.xinyu.ink/27_820_2ee6b3d5438955fdca0b4e4c541379b6_f0c8657432381e4f35a101de3d46f2e9.png)

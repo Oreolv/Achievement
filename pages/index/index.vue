@@ -95,7 +95,7 @@
 				}
 				this.$api.get_list({
 					name: this.tabList[current].name,
-					username: uni.getStorageSync('username'),
+					uid: uni.getStorageSync('username'),
 					page: this.load[current].page,
 					pageSize: this.pageSize
 				}).then(res => {

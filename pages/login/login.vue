@@ -51,12 +51,20 @@
 					},
 					success(res) {
 						if (res.result.code === 0) {
-							console.log(res);
 							uni.setStorageSync('token', res.result.token)
 							uni.setStorageSync('username', res.result.username)
 							uni.setStorageSync('avatar', res.result.userInfo.avatar)
-							uni.setStorageSync('uid', res.result.uid)
+							uni.setStorageSync('_id', res.result.uid)
 							uni.setStorageSync('cpId', res.result.userInfo.cpId)
+							uniCloud.callFunction({
+								name: 'user_info',
+								data: {
+									uid: uni.getStorageSync('_id')
+								},
+								success(res) {
+									console.log(res);
+								},
+							})
 							uniCloud.callFunction({
 								name: 'couple_info',
 								data: {

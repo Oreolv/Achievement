@@ -2,9 +2,9 @@
 const db = uniCloud.database()
 const cmd = db.command
 exports.main = async (event, context) => {
-	const {username,name,page=1,pageSize=10} = event
+	const {uid,name,page=1,pageSize=10} = event
 	const list = await db.collection('list')
-	.where({classify:cmd.eq(name),username:username})
+	.where({classify:cmd.eq(name),uid:uid})
 	
 	.orderBy('rate','asc')
 	.skip(pageSize * (page - 1))
@@ -12,7 +12,7 @@ exports.main = async (event, context) => {
 	
 	.get()
 	
-	let count = await db.collection('list').where({classify:cmd.eq(name),username:username}
+	let count = await db.collection('list').where({classify:cmd.eq(name),uid:uid}
 	).count()
 	//返回数据给客户端
 	return {
